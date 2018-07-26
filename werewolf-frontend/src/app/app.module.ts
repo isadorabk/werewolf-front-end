@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { LandpageComponent } from './landpage/landpage.component';
 import { AppRoutingModule } from './app-routing.module';
 import { JoinPageComponent } from './join-page/join-page.component';
+import { LobbyPageComponent } from './lobby-page/lobby-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandpageComponent,
-    JoinPageComponent
+    JoinPageComponent,
+    LobbyPageComponent
   ],
   imports: [
     BrowserModule,
