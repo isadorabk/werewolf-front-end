@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AdminLandpageComponent } from './admin-landpage/admin-landpage.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { AdminLandpageComponent } from './admin-landpage/admin-landpage.componen
     AdminLandpageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
