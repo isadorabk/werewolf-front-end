@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landpage',
@@ -7,14 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
   
   createGame() {
-    console.log('hi');
-    
+    console.log('create a game');
+  }
+
+  joinPage() {
+    this.router.navigateByUrl('/join');
   }
 
 }
