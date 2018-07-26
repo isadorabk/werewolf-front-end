@@ -1,0 +1,42 @@
+$primary: DodgerBlue
+$disable: Gainsboro
+$light: WhiteSmoke
+$white: White
+  
+=flex($direction:null, $justify:null, $align:null, $wrap:null)
+  display: flex
+  flex-direction: $direction
+  justify-content: $justify
+  align-items: $align
+  flex-wrap: $wrap
+  
+.admin_landpage_logo
+  border: solid black
+  width: 150px
+  height: 150px
+  margin-top: 20vh
+  margin-bottom: 10px
+
+.admin_landpage_title
+  font-size: 1.5em
+  margin-bottom: 20vh
+
+.admin_landpage_button
+  box-sizing: border-box
+  +flex($justify:center, $align:center)
+  height: 34px
+  width: 120px
+  cursor: pointer
+  color: $white
+  font-weight: 600
+  font-size: 0.7em
+  letter-spacing: 0.8px
+  background: $primary
+  padding: 0px 20px
+  margin: 0 1px 15px 0
+  box-shadow: 4px 4px 0px 0px rgba(50,50,50,0.4)
+  transition: all ease 0.5s
+
+  &:hover
+    box-shadow: 0 0 0px 0px rgba(50,50,50,0.4)
+    transition: all ease 0.5s

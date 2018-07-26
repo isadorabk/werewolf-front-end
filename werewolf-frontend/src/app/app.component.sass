@@ -1,0 +1,17 @@
+$bg-color: #fafafa
+  
+=flex($direction:null, $justify:null, $align:null, $wrap:null)
+  display: flex
+  flex-direction: $direction
+  justify-content: $justify
+  align-items: $align
+  flex-wrap: $wrap
+  
+.App
+  width: 100vw
+  height: 100vh
+  background: $bg-color
+  +flex($direction:column, $align:center)
+
+app-admin-landpage
+  +flex($direction:column, $align:center)
