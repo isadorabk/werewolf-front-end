@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLandpageComponent } from './admin-landpage/admin-landpage.component';
+import { PlayerLandpageComponent } from './player-landpage/player-landpage.component';
 
 const routes: Routes = [
-  { path: "game", component: AdminLandpageComponent },
-  { path: "", redirectTo: "/game", pathMatch: "full" }
+  { path: "new-game", component: AdminLandpageComponent },
+  { path: "", redirectTo: "/new-game", pathMatch: "full" },
+  { path: "join-game", component: PlayerLandpageComponent }
 ];
 
 @NgModule({
