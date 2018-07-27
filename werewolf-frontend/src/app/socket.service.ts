@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as socketIo from 'socket.io-client';
+import * as io from 'socket.io-client';
 
 const SERVER_URL = "http://localhost:3000";
 
@@ -9,10 +9,15 @@ const SERVER_URL = "http://localhost:3000";
 export class SocketService {
   constructor() { }
   private server = SERVER_URL;
-  private socket;
+  adminSocket
 
-  initSocket(): void {
-    this.socket = socketIo(this.server);
+  initSocket(gameId: string, adminCode?: string): void {
+    if (adminCode) this.adminSocket = io.connect(this.server + '/admin');
+    console.log(this.adminSocket);
+    
+    this.adminSocket.on('connect', () => {
+      console.log('Connected');
+      this.adminSocket.emit('join', gameId, adminCode);
+    });
   }
-
 }

@@ -1,4 +1,4 @@
 export class NewGame {
-  adminId: string;
+  adminCode: string;
   gameId: string;
 }
