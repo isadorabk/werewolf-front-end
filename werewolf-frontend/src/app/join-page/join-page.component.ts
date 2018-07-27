@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiClientService } from '../api-client.service';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-join-page',
@@ -6,10 +9,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./join-page.component.sass']
 })
 export class JoinPageComponent implements OnInit {
+@Input() username: string;
+@Input() gameCode: string;
+players: object = {};
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private apiClientService: ApiClientService,
+    private socketService: SocketService
+  ) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    // console.log('form submitted');
+    // console.log(this.username);
+    // console.log(this.gameCode);
+    this.createPlayer({username: this.username});
+  }
+
+  private initIoConnection(gameCode: string, playerId: string): void {
+    this.socketService.initPlayerSocket(gameCode, playerId)
+  }
+
+  createPlayer(player): void {
+    this.apiClientService.createPlayer(player)
+      .subscribe(data => {
+        this.players[data.playerId] = data;
+        this.initIoConnection(this.gameCode, data.playerId);
+        this.router.navigateByUrl('/lobby');
+      })
   }
   
 }

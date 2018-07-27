@@ -9,15 +9,26 @@ const SERVER_URL = "http://localhost:3000";
 export class SocketService {
   constructor() { }
   private server = SERVER_URL;
-  adminSocket
+  adminSocket;
+  playerSocket
 
   initSocket(gameId: string, adminCode?: string): void {
     if (adminCode) this.adminSocket = io.connect(this.server + '/admin');
     console.log(this.adminSocket);
     
     this.adminSocket.on('connect', () => {
-      console.log('Connected');
+      console.log('Admin connected', this.adminSocket.id);
       this.adminSocket.emit('join', gameId, adminCode);
+    });
+  }
+
+  initPlayerSocket(gameCode: string, playerId: string): void {
+    this.playerSocket = io.connect(this.server + '/game');
+    console.log(this.playerSocket);
+
+    this.playerSocket.on('connect', () => {
+      console.log('Player connected', this.playerSocket.id);
+      this.playerSocket.emit('join', gameCode, playerId);
     });
   }
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
-import { NewGame } from './classes/newGame';
+import { Game } from './classes/game';
+import { Player } from './classes/player';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,7 +20,11 @@ export class ApiClientService {
 
   constructor(private http: HttpClient) { }
 
-  createGame(): Observable<NewGame> {
-    return this.http.post<NewGame>(this.server + "/new-game", {}, httpOptions)
+  createGame(): Observable<Game> {
+    return this.http.post<Game>(this.server + "/new-game", {}, httpOptions)
+  }
+
+  createPlayer(player: object): Observable<Player> {
+    return this.http.post<Player>(this.server + "/new-player", player, httpOptions)
   }
 }

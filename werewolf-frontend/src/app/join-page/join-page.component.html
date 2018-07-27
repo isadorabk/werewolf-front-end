@@ -1,9 +1,9 @@
 <div class="join_page">
   <div class="join_page_logo">LOGO</div>
   <div class="join_page_title">WEREWOLF</div>
-  <form class="join_page_form">
-    <input class="join_page_input" type="text" placeholder="USERNAME" />
-    <input class="join_page_input" type="text" placeholder="GAME CODE" />
-    <input class="join_page_button" type="submit" value="LET'S PLAY!">
+  <form class="join_page_form" (submit)="onSubmit($event)">
+    <input class="join_page_input" id="username" name="username" [(ngModel)]="username" type="text" placeholder="USERNAME" />
+    <input class="join_page_input" id="gameCode" name="gameCode" [(ngModel)]="gameCode" type="text" placeholder="GAME CODE" />
+    <button class="join_page_button" type="submit">LET'S PLAY!</button>
   </form>
 </div>

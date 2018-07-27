@@ -1,4 +1,4 @@
-export class NewGame {
+export class Game {
   adminCode: string;
   gameId: string;
 }
