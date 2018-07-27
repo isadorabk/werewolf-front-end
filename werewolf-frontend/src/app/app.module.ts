@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { JoinPageComponent } from './join-page/join-page.component';
 import { LobbyPageComponent } from './lobby-page/lobby-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { GamePageComponent } from './game-page/game-page.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     LandpageComponent,
     JoinPageComponent,
     LobbyPageComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    GamePageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+$primary: DodgerBlue
+$white: White
+  
+=flex($direction:null, $justify:null, $align:null, $wrap:null)
+  display: flex
+  flex-direction: $direction
+  justify-content: $justify
+  align-items: $align
+  flex-wrap: $wrap
+
+.game_page
+  +flex($direction:column, $justify:space-between)
+  height: 90vh
+  padding: 20px 0
+
+.game_page_header
+  +flex($align: center)
+
+.game_page_header_logo
+  border: solid black
+  width: 50px
+  height: 50px
+  margin-right: 10px;
+
+.game_page_header_title
+
+.game_page_card
+  border: solid black
+  width: 150px
+  height: 300px
+  margin-bottom: 80px;
