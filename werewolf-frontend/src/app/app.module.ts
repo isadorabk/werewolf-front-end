@@ -7,13 +7,15 @@ import { LandpageComponent } from './landpage/landpage.component';
 import { AppRoutingModule } from './app-routing.module';
 import { JoinPageComponent } from './join-page/join-page.component';
 import { LobbyPageComponent } from './lobby-page/lobby-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandpageComponent,
     JoinPageComponent,
-    LobbyPageComponent
+    LobbyPageComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
