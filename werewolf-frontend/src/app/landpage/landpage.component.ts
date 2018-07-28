@@ -28,8 +28,9 @@ export class LandpageComponent implements OnInit {
     this.apiClientService.createGame()
       .subscribe(data => {
         this.gameId = data.gameId;
+        const adminCode = { adminCode: data.adminCode};
         this.apiClientService.sendGameId(this.gameId);
-        this.initIoConnection(data.gameId, data.adminCode);
+        this.initIoConnection(data.gameId, adminCode);
         this.router.navigateByUrl('/admin');
       })
   }

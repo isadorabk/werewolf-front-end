@@ -30,15 +30,16 @@ players: object = {};
     this.createPlayer({username: this.username});
   }
 
-  private initIoConnection(gameCode: string, playerId: string): void {
-    this.socketService.initPlayerSocket(gameCode, playerId)
+  private initIoConnection(gameCode: string, playerId?): void {
+    this.socketService.initSocket(gameCode, playerId)
   }
 
   createPlayer(player): void {
     this.apiClientService.createPlayer(player)
       .subscribe(data => {
         this.players[data.playerId] = data;
-        this.initIoConnection(this.gameCode, data.playerId);
+        const playerId = { playerId: data.playerId };
+        this.initIoConnection(this.gameCode, playerId);
         this.router.navigateByUrl('/lobby');
       })
   }
