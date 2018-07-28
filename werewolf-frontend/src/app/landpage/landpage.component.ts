@@ -10,22 +10,25 @@ import { SocketService } from '../socket.service';
 })
 export class LandpageComponent implements OnInit {
 
+  gameId: string;
+
   constructor(
     private router: Router,
     private apiClientService: ApiClientService,
     private socketService: SocketService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   private initIoConnection(gameId: string, adminCode?): void {
     this.socketService.initSocket(gameId, adminCode)
-  }
+  } 
 
   createGame(): void {
     this.apiClientService.createGame()
       .subscribe(data => {
+        this.gameId = data.gameId;
+        this.apiClientService.sendGameId(this.gameId);
         this.initIoConnection(data.gameId, data.adminCode);
         this.router.navigateByUrl('/admin');
       })

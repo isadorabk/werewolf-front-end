@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiClientService } from '../api-client.service';
+import { Player } from '../classes/player';
 
 @Component({
   selector: 'app-admin-page',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPageComponent implements OnInit {
 
-  constructor() { }
+  gameId: string;
+  players: Player[];
+
+  constructor(private apiClientService: ApiClientService) { }
 
   ngOnInit() {
+  }
+
+  startGame(): void {
+    this.gameId = this.apiClientService.getGameId();
+    this.apiClientService.getPlayers(this.gameId)
+      .subscribe(data => {
+        this.players = data;
+      })
   }
 
 }

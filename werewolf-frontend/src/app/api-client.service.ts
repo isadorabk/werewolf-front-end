@@ -16,7 +16,9 @@ const SERVER_URL = "http://localhost:3000";
   providedIn: 'root'
 })
 export class ApiClientService {
+
   private server = SERVER_URL;
+  gameId: string;
 
   constructor(private http: HttpClient) { }
 
@@ -27,4 +29,18 @@ export class ApiClientService {
   createPlayer(player: object): Observable<Player> {
     return this.http.post<Player>(this.server + "/new-player", player, httpOptions)
   }
+
+  sendGameId(gameIdSource): void {
+    this.gameId = gameIdSource;
+  }
+
+  getGameId(): string {
+    return this.gameId;
+  }
+
+  getPlayers(gameId: string): Observable<Player[]> {
+    return this.http.get<Player[]>(this.server + `/game/${gameId}`)
+  }
+  
+  
 }

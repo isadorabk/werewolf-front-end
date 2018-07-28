@@ -3,4 +3,5 @@ export class Player {
   username: string;
   role: string;
   lifeStatus: string;
+  socketId?: any;
 }
