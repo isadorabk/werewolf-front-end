@@ -10,6 +10,7 @@ import { JoinPageComponent } from './join-page/join-page.component';
 import { LobbyPageComponent } from './lobby-page/lobby-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { GamePageComponent } from './game-page/game-page.component';
+import { PlayerListItemComponent } from './player-list-item/player-list-item.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GamePageComponent } from './game-page/game-page.component';
     JoinPageComponent,
     LobbyPageComponent,
     AdminPageComponent,
-    GamePageComponent
+    GamePageComponent,
+    PlayerListItemComponent
   ],
   imports: [
     BrowserModule,

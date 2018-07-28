@@ -4,12 +4,7 @@
     <div class="admin_page_title">WEREWOLF</div>
   </div>
   <div class="admin_page_playersList">
-    <div class="admin_page_player">Player</div>
-    <div class="admin_page_player">Player</div>
-    <div class="admin_page_player">Player</div>
-    <div class="admin_page_player">Player</div>
-    <div class="admin_page_player">Player</div>
-    <div class="admin_page_player">Player</div>
+    <app-player-list-item *ngFor="let player of players" [player]="player"></app-player-list-item>
   </div>
   <button class="admin_page_button" (click)="startGame()">START</button>
 </div>

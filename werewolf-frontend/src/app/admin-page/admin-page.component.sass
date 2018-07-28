@@ -22,7 +22,12 @@ $white: White
 
 .admin_page_title
   font-size: 1.5em
-  margin-bottom: 10vh
+
+.admin_page_playersList
+  +flex($direction:column)
+  height: 300px
+  overflow: auto;
+  overflow-y: scroll;
 
 .admin_page_button
   box-sizing: border-box

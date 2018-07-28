@@ -1,0 +1,26 @@
+$primary: rgb(170, 99, 47)
+$white: White
+  
+=flex($direction:null, $justify:null, $align:null, $wrap:null)
+  display: flex
+  flex-direction: $direction
+  justify-content: $justify
+  align-items: $align
+  flex-wrap: $wrap
+
+.player_item
+  +flex($justify:space-around, $align:center)
+  width: 85vw
+  margin-bottom: 10px;
+
+.player_item_role
+  border: solid 1px
+  height: 30px
+  width: 30px
+  font-size: 0.5em
+  margin-right: 10px
+
+.player_item_username
+
+.player_item_lifeStatus
+  border: solid 1px
