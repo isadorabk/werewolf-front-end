@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiClientService } from '../api-client.service';
+import { SocketService } from '../socket.service';
 import { Player } from '../classes/player';
 
 @Component({
@@ -12,7 +13,7 @@ export class AdminPageComponent implements OnInit {
   gameId: string;
   players: Player[];
 
-  constructor(private apiClientService: ApiClientService) { }
+  constructor(private apiClientService: ApiClientService, private socketService: SocketService) { }
 
   ngOnInit() {
   }
@@ -22,10 +23,8 @@ export class AdminPageComponent implements OnInit {
     this.apiClientService.getPlayers(this.gameId)
       .subscribe(data => {
         this.players = data;
-        console.log(data);
+        this.socketService.startGame(this.gameId);
       })
   }
-
-
 
 }

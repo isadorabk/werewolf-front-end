@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-game-page',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-page.component.sass']
 })
 export class GamePageComponent implements OnInit {
+  role;
 
-  constructor() { }
+  constructor(private socketService: SocketService) { }
 
   ngOnInit() {
+    this.role = this.socketService.getRole();
   }
 
 }

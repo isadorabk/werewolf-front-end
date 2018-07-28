@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import * as io from 'socket.io-client';
 
 const SERVER_URL = "http://localhost:3000";
@@ -7,9 +8,10 @@ const SERVER_URL = "http://localhost:3000";
   providedIn: 'root'
 })
 export class SocketService {
-  constructor() { }
+  constructor(private router: Router) { }
   private server = SERVER_URL;
-  socket
+  socket;
+  role
 
   initSocket(gameId: string, identification?: any): void {
     this.socket = io.connect(this.server);
@@ -25,5 +27,26 @@ export class SocketService {
       }
 
     });
+
+    this.socket.on('disconnect', () => {
+      if (identification.adminCode) {
+        console.log('Admin disconnected', this.socket.id);
+      } else {
+        console.log('Player disconnected', this.socket.id);
+      }
+    });
+
+    this.socket.on('role', (playerRole) => {
+      this.role = playerRole;
+      this.router.navigateByUrl('/game');
+    });
+  }
+
+  startGame(gameId: string): void {
+    this.socket.emit('startGame', gameId)
+  }
+
+  getRole(): string {
+    return this.role
   }
 }
