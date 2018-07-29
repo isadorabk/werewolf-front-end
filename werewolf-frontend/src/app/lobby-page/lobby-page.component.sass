@@ -1,5 +1,7 @@
 $primary: rgb(170, 99, 47)
+$grey: rgb(52,53,63)
 $white: White
+$bg-color: #fafafa
   
 =flex($direction:null, $justify:null, $align:null, $wrap:null)
   display: flex
@@ -12,20 +14,26 @@ $white: White
   +flex($direction:column, $align:center)
   
 .lobby_page_logo
-  border: solid black
   width: 150px
   height: 150px
   margin-top: 20vh
   margin-bottom: 10px
 
-.lobby_page_title
-  font-size: 1.5em
-  margin-bottom: 10vh
+.lobby_page_logo_img
+  height: 100%
 
-.lobby_page_message
+.lobby_page_title
+  color: $grey
+  font-size: 1.5em
+  font-weight: 500
+  margin-bottom: 10vh
   width: 150px
   text-align: center
-  font-size: 1.5em
+
+.lobby_page_message
+  width: 200px
+  text-align: center
+  font-size: 1.3em
 
 .lobby_page_spin
   border: solid black

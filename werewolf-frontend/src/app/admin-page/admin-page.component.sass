@@ -1,5 +1,7 @@
 $primary: rgb(170, 99, 47)
+$grey: rgb(52,53,63)
 $white: White
+$bg-color: #fafafa
   
 =flex($direction:null, $justify:null, $align:null, $wrap:null)
   display: flex
@@ -16,12 +18,18 @@ $white: White
   +flex($direction:column, $align:center)
   
 .admin_page_logo
-  border: solid black
   width: 100px
   height: 100px
 
+.admin_page_logo_img
+  height: 100%
+
 .admin_page_title
-  font-size: 1.5em
+  color: $grey
+  font-size: 1em
+  font-weight: 500
+  width: 100px
+  text-align: center
 
 .admin_page_gameID
   margin-top: 15px

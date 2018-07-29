@@ -1,5 +1,7 @@
 $primary: rgb(170, 99, 47)
+$grey: rgb(52,53,63)
 $white: White
+$bg-color: #fafafa
   
 =flex($direction:null, $justify:null, $align:null, $wrap:null)
   display: flex
@@ -12,15 +14,21 @@ $white: White
   +flex($direction:column, $align:center)
   
 .landpage_logo
-  border: solid black
   width: 150px
   height: 150px
   margin-top: 20vh
   margin-bottom: 10px
 
+.landpage_logo_img
+  height: 100%
+
 .landpage_title
+  color: $grey
   font-size: 1.5em
+  font-weight: 500
   margin-bottom: 10vh
+  width: 150px
+  text-align: center
 
 .landpage_button
   box-sizing: border-box
