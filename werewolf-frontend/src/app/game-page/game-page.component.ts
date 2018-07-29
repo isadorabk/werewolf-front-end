@@ -7,12 +7,12 @@ import { SocketService } from '../socket.service';
   styleUrls: ['./game-page.component.sass']
 })
 export class GamePageComponent implements OnInit {
-  role;
+  player;
 
   constructor(private socketService: SocketService) { }
 
   ngOnInit() {
-    this.role = this.socketService.getRole();
+    this.player = this.socketService.getPlayer();
   }
 
 }

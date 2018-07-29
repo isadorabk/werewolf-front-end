@@ -4,4 +4,5 @@ export class Player {
   role: string;
   lifeStatus: string;
   socketId?: any;
+  card?: object;
 }

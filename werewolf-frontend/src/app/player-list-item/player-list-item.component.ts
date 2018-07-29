@@ -8,10 +8,12 @@ import { Player } from '../classes/player';
 })
 export class PlayerListItemComponent implements OnInit {
   @Input() player: Player;
+  card = {};
   
   constructor() { }
 
   ngOnInit() {
+    this.card = this.player.card[this.player.role]
   }
 
 }

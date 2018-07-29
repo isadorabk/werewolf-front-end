@@ -11,7 +11,7 @@ export class SocketService {
   constructor(private router: Router) { }
   private server = SERVER_URL;
   socket;
-  role
+  player
 
   initSocket(gameId: string, identification?: any): void {
     this.socket = io.connect(this.server);
@@ -23,7 +23,7 @@ export class SocketService {
         this.socket.emit('createGame', gameId, identification.adminCode);
       } else {
         console.log('Player connected', this.socket.id);
-        this.socket.emit('join', gameId, identification.playerId);
+        this.socket.emit('joinGame', gameId, identification.playerId);
       }
 
     });
@@ -36,8 +36,8 @@ export class SocketService {
       }
     });
 
-    this.socket.on('role', (playerRole) => {
-      this.role = playerRole;
+    this.socket.on('player', (player) => {
+      this.player = player;
       this.router.navigateByUrl('/game');
     });
   }
@@ -46,7 +46,7 @@ export class SocketService {
     this.socket.emit('startGame', gameId)
   }
 
-  getRole(): string {
-    return this.role
+  getPlayer(): string {
+    return this.player;
   }
 }

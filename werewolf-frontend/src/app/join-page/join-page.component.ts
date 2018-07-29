@@ -11,7 +11,6 @@ import { SocketService } from '../socket.service';
 export class JoinPageComponent implements OnInit {
 @Input() username: string;
 @Input() gameCode: string;
-players: object = {};
 
   constructor(
     private router: Router,
@@ -24,22 +23,14 @@ players: object = {};
 
   onSubmit(e) {
     e.preventDefault();
-    // console.log('form submitted');
-    // console.log(this.username);
-    // console.log(this.gameCode);
     this.createPlayer({username: this.username});
-  }
-
-  private initIoConnection(gameCode: string, playerId?): void {
-    this.socketService.initSocket(gameCode, playerId)
   }
 
   createPlayer(player): void {
     this.apiClientService.createPlayer(player)
       .subscribe(data => {
-        this.players[data.playerId] = data;
         const playerId = { playerId: data.playerId };
-        this.initIoConnection(this.gameCode, playerId);
+        this.socketService.initSocket(this.gameCode, playerId);
         this.router.navigateByUrl('/lobby');
       })
   }

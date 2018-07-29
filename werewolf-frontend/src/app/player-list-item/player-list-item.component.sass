@@ -1,7 +1,9 @@
 $primary: rgb(170, 99, 47)
 $grey: rgb(52,53,63)
+$green: rgb(53,141,39)
+$red: rgb(130,16,24)
 $white: White
-$bg-color: #fafafa
+$bg-color: rgb(243, 243, 243)
   
 =flex($direction:null, $justify:null, $align:null, $wrap:null)
   display: flex
@@ -11,18 +13,32 @@ $bg-color: #fafafa
   flex-wrap: $wrap
 
 .player_item
-  +flex($justify:space-around, $align:center)
-  width: 85vw
-  margin-bottom: 10px;
+  +flex($justify:space-between, $align:center)
+  width: 75vw
+  max-width: 380px
+  margin-bottom: 10px
 
 .player_item_role
-  border: solid 1px
-  height: 30px
-  width: 30px
+  +flex($justify: center, $align: center)
+  border: solid $primary
+  border-radius: 10px
+  background-color: $bg-color
+  height: 40px
+  width: 40px
   font-size: 0.5em
   margin-right: 10px
 
+.player_item_role_img
+  height: 90%
+
 .player_item_username
+  font-size: 1em
+  font-weight: 500
 
 .player_item_lifeStatus
-  border: solid 1px
+  border: solid $green
+  border-radius: 10px
+  background-color: $bg-color
+  font-size: 0.8em
+  color: $green
+  padding: 5px 10px

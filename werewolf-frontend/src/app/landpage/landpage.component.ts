@@ -20,17 +20,13 @@ export class LandpageComponent implements OnInit {
 
   ngOnInit() { }
 
-  private initIoConnection(gameId: string, adminCode?): void {
-    this.socketService.initSocket(gameId, adminCode)
-  } 
-
   createGame(): void {
     this.apiClientService.createGame()
       .subscribe(data => {
         this.gameId = data.gameId;
         const adminCode = { adminCode: data.adminCode};
         this.apiClientService.sendGameId(this.gameId);
-        this.initIoConnection(data.gameId, adminCode);
+        this.socketService.initSocket(data.gameId, adminCode);
         this.router.navigateByUrl('/admin');
       })
   }

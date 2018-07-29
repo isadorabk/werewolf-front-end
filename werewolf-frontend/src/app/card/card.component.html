@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card_body">
     <div class="card_body_logo">
-      <img src="../../assets/img/werewolf.jpeg" alt="" class="card_body_logo_img">
+      <img src={{card.imgUrl}} alt="" class="card_body_logo_img">
     </div>
     <div class="card_body_text">
-      <div class="card_body_text_title">{{role | uppercase}}</div>
-      <div class="card_body_text_description">Take over the village</div>
+      <div class="card_body_text_title">{{card.title | uppercase}}</div>
+      <div class="card_body_text_description">{{card.description}}</div>
     </div>
   </div>
-  <div class="card_lifeStatus">ALIVE</div>
+<div class="card_lifeStatus">{{player.lifeStatus | uppercase}}</div>
 </div>

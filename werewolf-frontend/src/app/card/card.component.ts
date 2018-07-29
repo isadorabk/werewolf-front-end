@@ -6,11 +6,12 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./card.component.sass']
 })
 export class CardComponent implements OnInit {
-  @Input() role;
+  @Input() player;
+  card = {};
 
   constructor() { }
 
   ngOnInit() {
+    this.card = this.player.card[this.player.role]
   }
-
 }
