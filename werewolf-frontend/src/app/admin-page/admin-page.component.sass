@@ -1,7 +1,11 @@
 $primary: rgb(170, 99, 47)
 $grey: rgb(52,53,63)
+$green: rgb(53,141,39)
+$red: rgb(130,16,24)
+$blue: rgb(39, 65, 113)
+$yellow: rgb(245,203,0)
 $white: White
-$bg-color: #fafafa
+$bg-color: rgb(243, 243, 243)
   
 =flex($direction:null, $justify:null, $align:null, $wrap:null)
   display: flex
@@ -49,7 +53,7 @@ $bg-color: #fafafa
 ::-webkit-scrollbar
   display: none
 
-.admin_page_button
+.admin_page_start_button
   box-sizing: border-box
   +flex($justify:center, $align:center)
   height: 40px
@@ -68,3 +72,50 @@ $bg-color: #fafafa
   &:hover
     box-shadow: 0 0 0px 0px rgba(50,50,50,0.4)
     transition: all ease 0.5s
+
+.admin_page_game_buttons
+  +flex($justify: space-between)
+  width: 75vw
+
+.admin_page_game_buttons_day
+  box-sizing: border-box
+  +flex($justify:center, $align:center)
+  height: 40px
+  width: 140px
+  cursor: pointer
+  color: $white
+  font-weight: 600
+  font-size: 1em
+  letter-spacing: 0.8px
+  background: $yellow
+  padding: 0px 20px
+  margin: 0 1px 30px 0
+  box-shadow: 4px 4px 0px 0px rgba(50,50,50,0.4)
+  transition: all ease 0.5s
+
+  &:hover
+    box-shadow: 0 0 0px 0px rgba(50,50,50,0.4)
+    transition: all ease 0.5s
+
+.admin_page_game_buttons_night
+  box-sizing: border-box
+  +flex($justify:center, $align:center)
+  height: 40px
+  width: 140px
+  cursor: pointer
+  color: $white
+  font-weight: 600
+  font-size: 1em
+  letter-spacing: 0.8px
+  background: $blue
+  padding: 0px 20px
+  margin: 0 1px 30px 0
+  box-shadow: 4px 4px 0px 0px rgba(50,50,50,0.4)
+  transition: all ease 0.5s
+
+  &:hover
+    box-shadow: 0 0 0px 0px rgba(50,50,50,0.4)
+    transition: all ease 0.5s
+
+fa-icon
+  font-size: 1.5em
