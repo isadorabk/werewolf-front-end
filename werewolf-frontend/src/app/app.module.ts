@@ -11,6 +11,7 @@ import { LobbyPageComponent } from './lobby-page/lobby-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { GamePageComponent } from './game-page/game-page.component';
 import { PlayerListItemComponent } from './player-list-item/player-list-item.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PlayerListItemComponent } from './player-list-item/player-list-item.com
     LobbyPageComponent,
     AdminPageComponent,
     GamePageComponent,
-    PlayerListItemComponent
+    PlayerListItemComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

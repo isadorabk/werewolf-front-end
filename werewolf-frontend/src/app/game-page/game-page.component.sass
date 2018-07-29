@@ -11,13 +11,14 @@ $bg-color: #fafafa
   flex-wrap: $wrap
 
 .game_page
-  +flex($direction:column, $justify:space-between)
+  +flex($direction:column)
   height: 90vh
   padding: 20px 0
 
 .game_page_header
-  +flex($align: center)
+  +flex($align: center, $justify: center)
   width: 85vw
+  margin-bottom: 50px
 
 .game_page_header_logo
   width: 50px
@@ -33,14 +34,3 @@ $bg-color: #fafafa
   font-weight: 500
   width: 110px
   text-align: center
-
-.game_page_body
-  +flex($direction:column, $align:center)
-  margin-bottom: 80px
-
-.game_page_card
-  border: solid black
-  width: 150px
-  height: 300px
-  margin-bottom: 10px
-  
