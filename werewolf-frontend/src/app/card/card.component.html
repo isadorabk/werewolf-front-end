@@ -1,12 +1,12 @@
 <div class="card">
-  <div class="card_body">
-    <div class="card_body_logo">
+  <div class="card_body" (click)="toggleCard()">
+    <div class="card_body_logo" *ngIf="showCard">
       <img src={{card.imgUrl}} alt="" class="card_body_logo_img">
     </div>
-    <div class="card_body_text">
+    <div class="card_body_text" *ngIf="showCard">
       <div class="card_body_text_title">{{card.title | uppercase}}</div>
       <div class="card_body_text_description">{{card.description}}</div>
     </div>
   </div>
-<div class="card_lifeStatus">{{player.lifeStatus | uppercase}}</div>
+  <div class="card_lifeStatus">{{player.lifeStatus | uppercase}}</div>
 </div>

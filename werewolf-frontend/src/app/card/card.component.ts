@@ -8,10 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardComponent implements OnInit {
   @Input() player;
   card = {};
+  showCard = true;
 
   constructor() { }
 
   ngOnInit() {
     this.card = this.player.card[this.player.role]
+  }
+
+  toggleCard(): void {
+    this.showCard = !this.showCard;
   }
 }
