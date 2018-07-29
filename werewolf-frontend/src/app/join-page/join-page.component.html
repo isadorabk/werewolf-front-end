@@ -1,9 +1,11 @@
 <div class="join_page">
   <div class="join_page_logo"><img src="../../assets/img/game-logo.png" class="join_page_logo_img"></div>
   <div class="join_page_title">WEREWOLF GAME</div>
-  <form class="join_page_form" (submit)="onSubmit($event)">
+  <form class="join_page_form" (submit)="onSubmit($event)" *ngIf="!playerJoined">
     <input class="join_page_input" id="username" name="username" [(ngModel)]="username" type="text" placeholder="USERNAME" />
     <input class="join_page_input" id="gameCode" name="gameCode" [(ngModel)]="gameCode" type="text" placeholder="GAME CODE" />
     <button class="join_page_button" type="submit">LET'S PLAY!</button>
   </form>
+  <div class="join_page_message" *ngIf="playerJoined">WAITING FOR OTHER PLAYERS TO JOIN</div>
+  <!-- <div class="join_page_spin" *ngIf="playerJoined"></div> -->
 </div>

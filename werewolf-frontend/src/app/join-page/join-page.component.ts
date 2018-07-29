@@ -9,8 +9,9 @@ import { SocketService } from '../socket.service';
   styleUrls: ['./join-page.component.sass']
 })
 export class JoinPageComponent implements OnInit {
-@Input() username: string;
-@Input() gameCode: string;
+  @Input() username: string;
+  @Input() gameCode: string;
+  playerJoined = false;
 
   constructor(
     private router: Router,
@@ -31,7 +32,7 @@ export class JoinPageComponent implements OnInit {
       .subscribe(data => {
         const playerId = { playerId: data.playerId };
         this.socketService.initSocket(this.gameCode, playerId);
-        this.router.navigateByUrl('/lobby');
+        this.playerJoined = true;
       })
   }
   
