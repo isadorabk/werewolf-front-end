@@ -16,10 +16,10 @@ export class AdminPageComponent implements OnInit {
   constructor(private apiClientService: ApiClientService, private socketService: SocketService) { }
 
   ngOnInit() {
+    this.gameId = this.apiClientService.getGameId();
   }
 
   startGame(): void {
-    this.gameId = this.apiClientService.getGameId();
     this.apiClientService.getPlayers(this.gameId)
       .subscribe(data => {
         this.players = data;

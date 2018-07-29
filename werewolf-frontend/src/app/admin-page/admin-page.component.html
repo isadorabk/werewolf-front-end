@@ -2,6 +2,7 @@
   <div class="admin_page_header">
     <div class="admin_page_logo">LOGO</div>
     <div class="admin_page_title">WEREWOLF</div>
+    <div class="admin_page_gameID">GAME CODE: <span class="admin_page_gameID_span">{{gameId}}</span></div>
   </div>
   <div class="admin_page_playersList">
     <app-player-list-item *ngFor="let player of players" [player]="player"></app-player-list-item>
