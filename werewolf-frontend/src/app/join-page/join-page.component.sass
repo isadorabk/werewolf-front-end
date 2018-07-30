@@ -2,23 +2,28 @@
 
 .join_page
   +flex($direction:column, $align:center)
-  
-.join_page_logo
+
+.join_page_header
+  margin-bottom: 10vh
+
+.join_page_header_logo
   width: 150px
   height: 150px
   margin-top: 20vh
-  margin-bottom: 10px
 
-.join_page_logo_img
+.join_page_header_logo_img
   height: 100%
+  border-radius: 10px 10px 0 0
 
-.join_page_title
+.join_page_header_title
   color: $grey
-  font-size: 1.5em
-  font-weight: 500
-  margin-bottom: 10vh
-  width: 150px
+  font-size: 1em
+  font-weight: 600
+  width: 134px
   text-align: center
+  border: solid $grey
+  padding: 5px
+  border-radius: 0 0 10px 10px
 
 .join_page_form
   +flex($direction:column, $align:center)
@@ -43,7 +48,10 @@
   margin: 10px 1px 15px 0
   box-shadow: 4px 4px 0px 0px rgba(50,50,50,0.4)
   transition: all ease 0.5s
+  border: none
+  outline: none
+  border-radius: 10px
 
-  &:hover
+  &:active
     box-shadow: 0 0 0px 0px rgba(50,50,50,0.4)
     transition: all ease 0.5s

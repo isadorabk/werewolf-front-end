@@ -2,23 +2,29 @@
 
 .landpage
   +flex($direction:column, $align:center)
+
+.landpage_header
+  margin-bottom: 10vh
   
-.landpage_logo
+.landpage_header_logo
   width: 150px
   height: 150px
   margin-top: 20vh
-  margin-bottom: 10px
 
-.landpage_logo_img
+.landpage_header_logo_img
   height: 100%
+  border-radius: 10px 10px 0 0
 
-.landpage_title
+
+.landpage_header_title
   color: $grey
-  font-size: 1.5em
-  font-weight: 500
-  margin-bottom: 10vh
-  width: 150px
+  font-size: 1em
+  font-weight: 600
+  width: 134px
   text-align: center
+  border: solid $grey
+  padding: 5px
+  border-radius: 0 0 10px 10px
 
 .landpage_button
   box-sizing: border-box
@@ -37,7 +43,8 @@
   transition: all ease 0.5s
   border: none
   outline: none
+  border-radius: 10px
 
-  &:hover
+  &:active
     box-shadow: 0 0 0px 0px rgba(50,50,50,0.4)
     transition: all ease 0.5s

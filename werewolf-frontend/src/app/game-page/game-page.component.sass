@@ -6,24 +6,32 @@
   padding: 20px 0
 
 .game_page_header
-  +flex($align: center, $justify: center)
+  +flex($direction: column, $align: center)
+  margin-top: 18px
+  margin-bottom: 30px
   width: 85vw
-  margin-bottom: 50px
 
 .game_page_header_logo
+  +flex($align: center, $justify: center)
+
+.game_page_logo
   width: 50px
   height: 50px
-  margin-right: 10px;
 
-.game_page_header_logo_img
+.game_page_logo_img
   height: 100%
+  border-radius: 10px 0 0 10px
 
-.game_page_header_title
+.game_page_title
   color: $grey
-  font-size: 1em
-  font-weight: 500
+  font-size: 0.8em
+  font-weight: 600
   width: 110px
+  height: 34px
+  padding: 5px
   text-align: center
+  border: solid $grey
+  border-radius: 0 10px 10px 0
 
 .game_page_body
   +flex($direction:column, $align:center)
@@ -33,6 +41,7 @@
   text-align: center
   font-size: 2em
   font-weight: 600
+  color: $grey
 
 .game_page_spin
   border: solid black
