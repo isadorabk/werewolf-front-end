@@ -12,11 +12,13 @@ export class SocketService {
   constructor(private router: Router) { }
   private server = SERVER_URL;
   socket;
-  player
+  player;
+  round
 
   initSocket(gameId: string, identification?: any): void {
     this.socket = io.connect(this.server);
     console.log(this.socket);
+    
     
     this.socket.on('connect', () => {
       if (identification.adminCode) {
@@ -39,15 +41,28 @@ export class SocketService {
 
     this.socket.on('player', (player) => {
       this.player = player;
+      console.log('Socket on player', this.socket.id);
       this.router.navigateByUrl('/game');
     });
+
+    this.socket.on('updateRound', (round) => {
+      this.round = round;
+    })
   }
 
   startGame(gameId: string): void {
     this.socket.emit('startGame', gameId)
   }
 
+  startRound(gameId: string, type: string): void {
+    this.socket.emit('startRound', gameId, type)
+  }
+
   getPlayer(): string {
     return this.player;
+  }
+
+  getRound(): string {
+    return this.round;
   }
 }

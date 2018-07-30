@@ -17,11 +17,14 @@ export class AdminPageComponent implements OnInit {
   faSun = faSun;
   faMoon = faMoon;
   gameHasStarted = false;
+  round: string;
+
 
   constructor(private apiClientService: ApiClientService, private socketService: SocketService) { }
 
   ngOnInit() {
     this.gameId = this.apiClientService.getGameId();
+    this.getRound();
   }
 
   startGame(): void {
@@ -29,12 +32,22 @@ export class AdminPageComponent implements OnInit {
       .subscribe(data => {
         this.players = data;
         this.socketService.startGame(this.gameId);
-        this.gameStarted();
+        this.gameHasStarted = true;
       })
   }
 
-  gameStarted(): void {
-    this.gameHasStarted = true;
+  startDayRound(): void {
+    this.socketService.startRound(this.gameId, 'day');
+  }
+
+  startNightRound(): void {
+    this.socketService.startRound(this.gameId, 'night');
+  }
+
+  getRound(): void {
+    setInterval(() => {
+      this.round = this.socketService.getRound();
+    }, 200);
   }
 
 }

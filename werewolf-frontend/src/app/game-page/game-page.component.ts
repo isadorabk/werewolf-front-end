@@ -8,11 +8,19 @@ import { SocketService } from '../socket.service';
 })
 export class GamePageComponent implements OnInit {
   player;
+  round: string;
 
   constructor(private socketService: SocketService) { }
 
   ngOnInit() {
     this.player = this.socketService.getPlayer();
+    this.getRound();
+  }
+
+  getRound(): void {
+    setInterval(() => {
+      this.round = this.socketService.getRound();
+    }, 200);
   }
 
 }
