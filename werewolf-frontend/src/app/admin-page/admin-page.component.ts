@@ -3,7 +3,6 @@ import { faSun } from '@fortawesome/free-solid-svg-icons';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { ApiClientService } from '../api-client.service';
 import { SocketService } from '../socket.service';
-import { Player } from '../classes/player';
 
 @Component({
   selector: 'app-admin-page',
@@ -11,29 +10,50 @@ import { Player } from '../classes/player';
   styleUrls: ['./admin-page.component.sass']
 })
 export class AdminPageComponent implements OnInit {
-
-  gameId: string;
-  players: Player[];
   faSun = faSun;
   faMoon = faMoon;
-  gameHasStarted = false;
-  round: string;
+  gameStarted = false;
+  gameId: string;
+  players = [];
 
 
   constructor(private apiClientService: ApiClientService, private socketService: SocketService) { }
 
   ngOnInit() {
-    this.gameId = this.apiClientService.getGameId();
-    this.getRound();
+    this.gameId = this.apiClientService.getGameId(); //TODO: recfact with rout
+
+    this.socketService.message.subscribe(this.messageReceived);
+
+  }
+
+  messageReceived = ({ command, payload }) => {
+    switch (command) {
+      case 'playerCreated':
+        this.players.push(payload);
+        break;
+      
+      case 'playersList':
+        this.players = payload;
+        break;
+      
+      case 'updateLifeStatus':
+        this.players.forEach(player => {
+          if (player.playerId === payload.playerId) {
+            player.lifeStatus = payload.lifeStatus;
+          }
+        });
+        break;
+        
+        
+    
+      default:
+        break;
+    }
   }
 
   startGame(): void {
-    this.apiClientService.getPlayers(this.gameId)
-      .subscribe(data => {
-        this.players = data;
-        this.socketService.startGame(this.gameId);
-        this.gameHasStarted = true;
-      })
+    this.socketService.startGame(this.gameId);
+    this.gameStarted = true;
   }
 
   startDayRound(): void {
@@ -42,12 +62,6 @@ export class AdminPageComponent implements OnInit {
 
   startNightRound(): void {
     this.socketService.startRound(this.gameId, 'night');
-  }
-
-  getRound(): void {
-    setInterval(() => {
-      this.round = this.socketService.getRound();
-    }, 200);
   }
 
 }

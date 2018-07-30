@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiClientService } from '../api-client.service';
 import { SocketService } from '../socket.service';
+import { Player } from '../classes/player';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-join-page',
@@ -11,12 +12,12 @@ import { SocketService } from '../socket.service';
 export class JoinPageComponent implements OnInit {
   @Input() username: string;
   @Input() gameCode: string;
-  playerJoined = false;
+  player: Player;
 
   constructor(
-    private router: Router,
     private apiClientService: ApiClientService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -30,9 +31,10 @@ export class JoinPageComponent implements OnInit {
   createPlayer(player): void {
     this.apiClientService.createPlayer(player)
       .subscribe(data => {
+        this.player = data;
         const playerId = { playerId: data.playerId };
         this.socketService.initSocket(this.gameCode, playerId);
-        this.playerJoined = true;
+        this.router.navigateByUrl('/game');
       })
   }
   

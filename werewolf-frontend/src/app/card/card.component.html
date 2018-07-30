@@ -8,5 +8,5 @@
       <div class="card_body_text_description">{{card.description}}</div>
     </div>
   </div>
-  <div [ngClass]="getLifeStatusCSS()">{{player.lifeStatus | uppercase}}</div>
+  <div [ngClass]="getCSSClasses('lifeStatus')">{{player.lifeStatus | uppercase}}</div>
 </div>

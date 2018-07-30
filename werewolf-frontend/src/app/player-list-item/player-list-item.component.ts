@@ -22,4 +22,26 @@ export class PlayerListItemComponent implements OnInit {
     this.socketService.killPlayer(this.gameId, this.player.playerId);
   }
 
+  getCSSClasses(flag: string): object {
+    let cssClasses;
+    switch (flag) {
+      case 'lifeStatus':
+        if (this.player.lifeStatus === 'alive') {
+          cssClasses = {
+            'alive': true,
+            'dead': false
+          };
+        }
+        if (this.player.lifeStatus === 'dead') {
+          cssClasses = {
+            'alive': false,
+            'dead': true
+          };
+        }
+        return cssClasses;
+      default:
+        break;
+    }
+  }
+
 }

@@ -1,14 +1,4 @@
-$primary: rgb(170, 99, 47)
-$grey: rgb(52,53,63)
-$white: White
-$bg-color: #fafafa
-  
-=flex($direction:null, $justify:null, $align:null, $wrap:null)
-  display: flex
-  flex-direction: $direction
-  justify-content: $justify
-  align-items: $align
-  flex-wrap: $wrap
+@import '../app.component';
 
 .landpage
   +flex($direction:column, $align:center)
@@ -45,6 +35,8 @@ $bg-color: #fafafa
   margin: 0 1px 30px 0
   box-shadow: 4px 4px 0px 0px rgba(50,50,50,0.4)
   transition: all ease 0.5s
+  border: none
+  outline: none
 
   &:hover
     box-shadow: 0 0 0px 0px rgba(50,50,50,0.4)

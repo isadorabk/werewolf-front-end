@@ -1,16 +1,4 @@
-$primary: rgb(170, 99, 47)
-$grey: rgb(52,53,63)
-$green: rgb(53,141,39)
-$red: rgb(130,16,24)
-$white: White
-$bg-color: rgb(243, 243, 243)
-  
-=flex($direction:null, $justify:null, $align:null, $wrap:null)
-  display: flex
-  flex-direction: $direction
-  justify-content: $justify
-  align-items: $align
-  flex-wrap: $wrap
+@import '../app.component';
 
 .player_item
   +flex($justify:space-between, $align:center)
@@ -35,10 +23,18 @@ $bg-color: rgb(243, 243, 243)
   font-size: 1em
   font-weight: 500
 
-.player_item_lifeStatus
+.alive
+  color: $green
   border: solid $green
   border-radius: 10px
   background-color: $bg-color
   font-size: 0.8em
-  color: $green
+  padding: 5px 10px
+
+.dead
+  color: $red
+  border: solid $red
+  border-radius: 10px
+  background-color: $bg-color
+  font-size: 0.8em
   padding: 5px 10px

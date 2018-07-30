@@ -20,18 +20,26 @@ export class CardComponent implements OnInit {
     this.showCard = !this.showCard;
   }
 
-  getLifeStatusCSS(): object {
-    if (this.player.lifeStatus === 'alive') {
-      return {
-        'alive': true,
-        'dead': false
-      };
+  getCSSClasses(flag: string): object {
+    let cssClasses;
+    switch (flag) {
+      case 'lifeStatus':
+        if (this.player.lifeStatus === 'alive') {
+          cssClasses = {
+            'alive': true,
+            'dead': false
+          };
+        }
+        if (this.player.lifeStatus === 'dead') {
+          cssClasses = {
+            'alive': false,
+            'dead': true
+          };
+        }
+        return cssClasses;
+      default:
+        break;
     }
-    if (this.player.lifeStatus === 'dead') {
-      return {
-        'alive': false,
-        'dead': true
-      };
-    }
+
   }
 }

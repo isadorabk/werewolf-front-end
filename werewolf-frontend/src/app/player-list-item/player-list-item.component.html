@@ -3,5 +3,5 @@
   <img src={{card.imgUrl}} alt="" class="player_item_role_img">
   </div>
   <div class="player_item_username">{{player.username | uppercase}}</div>
-  <div class="player_item_lifeStatus" (click)="killPlayer()">{{player.lifeStatus | uppercase}}</div>
+  <div [ngClass]="getCSSClasses('lifeStatus')" (click)="killPlayer()">{{player.lifeStatus | uppercase}}</div>
 </div>

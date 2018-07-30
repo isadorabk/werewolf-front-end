@@ -8,26 +8,31 @@ import { SocketService } from '../socket.service';
 })
 export class GamePageComponent implements OnInit {
   player;
-  round: string;
+  gameStarted = false;
 
-  constructor(private socketService: SocketService) { }
+  constructor(
+    private socketService: SocketService
+  ) { }
 
   ngOnInit() {
-    this.player = this.socketService.getPlayer();
-    this.getRound();
-    this.getLifeStatus();
+    this.socketService.message.subscribe(this.messageReceived);
   }
 
-  getRound(): void {
-    setInterval(() => {
-      this.round = this.socketService.getRound();
-    }, 200);
-  }
+  messageReceived = ({command, payload}) => {
+    switch (command) {
+      case 'playerInfo':
+        this.player = payload;
+        this.gameStarted = true;
+        break;
+      case 'updateLifeStatus':
+        this.player.lifeStatus = payload;
+        break;
 
-  getLifeStatus(): void {
-    setInterval(() => {
-      this.player.lifeStatus = this.socketService.getLifeStatus();
-    }, 1000);
+
+    
+      default:
+        break;
+    }
   }
 
 }

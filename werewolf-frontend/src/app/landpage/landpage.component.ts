@@ -10,7 +10,7 @@ import { SocketService } from '../socket.service';
 })
 export class LandpageComponent implements OnInit {
 
-  gameId: string;
+  game = {};
 
   constructor(
     private router: Router,
@@ -18,14 +18,15 @@ export class LandpageComponent implements OnInit {
     private socketService: SocketService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+  }
 
   createGame(): void {
     this.apiClientService.createGame()
       .subscribe(data => {
-        this.gameId = data.gameId;
+        this.game = data;
         const adminCode = { adminCode: data.adminCode};
-        this.apiClientService.sendGameId(this.gameId);
+        this.apiClientService.sendGameId(data.gameId); //TODO: refactoring: pass through this.router.navigate navigationextras
         this.socketService.initSocket(data.gameId, adminCode);
         this.router.navigateByUrl('/admin');
       })

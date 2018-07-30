@@ -11,10 +11,10 @@
   <div class="admin_page_playersList">
      <app-player-list-item *ngFor="let player of players" [player]="player" [gameId]="gameId"></app-player-list-item> 
   </div>
-  <div class="admin_page_start" *ngIf="!gameHasStarted">
+  <div class="admin_page_start" *ngIf="!gameStarted">
     <button class="admin_page_start_button" (click)="startGame()">START</button>
   </div>
-  <div class="admin_page_game_buttons" *ngIf="gameHasStarted">
+  <div class="admin_page_game_buttons" *ngIf="gameStarted">
     <button class="admin_page_game_buttons_day" (click)="startDayRound()"><fa-icon [icon]="faSun"></fa-icon></button>
     <button class="admin_page_game_buttons_night" (click)="startNightRound()"><fa-icon [icon]="faMoon"></fa-icon></button>
   </div>
