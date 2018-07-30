@@ -16,14 +16,21 @@ $bg-color: rgb(243, 243, 243)
 
 .admin_page
   +flex($direction:column, $align:center, $justify: space-evenly)
-  height: 100vh
+  height: 90vh
+  padding: 20px 0
 
 .admin_page_header
-  +flex($direction:column, $align:center)
+  +flex($direction: column, $align: center)
+  margin-bottom: 30px
+  width: 85vw
+
+.admin_page_header_logo
+  +flex($align: center, $justify: center)
   
 .admin_page_logo
-  width: 100px
-  height: 100px
+  width: 50px
+  height: 50px
+  margin-right: 10px;
 
 .admin_page_logo_img
   height: 100%
@@ -32,7 +39,7 @@ $bg-color: rgb(243, 243, 243)
   color: $grey
   font-size: 1em
   font-weight: 500
-  width: 100px
+  width: 110px
   text-align: center
 
 .admin_page_gameID
@@ -47,6 +54,7 @@ $bg-color: rgb(243, 243, 243)
   +flex($direction:column)
   height: 50vh
   width: 75vw
+  max-width: 380px
   overflow: auto;
   overflow-y: scroll;
 
@@ -102,7 +110,7 @@ $bg-color: rgb(243, 243, 243)
   box-sizing: border-box
   +flex($justify:center, $align:center)
   height: 40px
-  width: 140px
+  width: 100px
   cursor: pointer
   color: $white
   font-weight: 600

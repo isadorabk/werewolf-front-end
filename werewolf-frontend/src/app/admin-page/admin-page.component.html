@@ -1,8 +1,12 @@
 <div class="admin_page">
   <div class="admin_page_header">
-    <div class="admin_page_logo"><img src="../../assets/img/game-logo.png" class="admin_page_logo_img"></div>
-    <div class="admin_page_title">WEREWOLF GAME</div>
-    <div class="admin_page_gameID">GAME CODE: <span class="admin_page_gameID_span">{{gameId}}</span></div>
+    <div class="admin_page_header_logo">
+      <div class="admin_page_logo"><img src="../../assets/img/game-logo.png" class="admin_page_logo_img"></div>
+      <div class="admin_page_title">WEREWOLF GAME</div>
+    </div>
+    <div class="admin_page_gameID">GAME CODE:
+      <span class="admin_page_gameID_span">{{gameId}}</span>
+    </div>
   </div>
   <div class="admin_page_playersList">
      <app-player-list-item *ngFor="let player of players" [player]="player"></app-player-list-item> 
