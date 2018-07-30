@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as io from 'socket.io-client';
+import { LifecycleHooks } from '../../node_modules/@angular/compiler/src/lifecycle_reflector';
 
 const SERVER_URL = "http://localhost:3000";
 // const SERVER_URL = "http://192.168.1.255:3000";
@@ -13,7 +14,8 @@ export class SocketService {
   private server = SERVER_URL;
   socket;
   player;
-  round
+  round;
+  lifeStatus = 'alive';
 
   initSocket(gameId: string, identification?: any): void {
     this.socket = io.connect(this.server);
@@ -47,6 +49,10 @@ export class SocketService {
 
     this.socket.on('updateRound', (round) => {
       this.round = round;
+    });
+
+    this.socket.on('updateLifeStatus', (lifeStatus) => {
+      this.lifeStatus = lifeStatus;
     })
   }
 
@@ -58,11 +64,19 @@ export class SocketService {
     this.socket.emit('startRound', gameId, type)
   }
 
+  killPlayer(gameId: string, playerId: string): void {
+    this.socket.emit('killPlayer', gameId, playerId)
+  }
+
   getPlayer(): string {
     return this.player;
   }
 
   getRound(): string {
     return this.round;
+  }
+
+  getLifeStatus(): string {
+    return this.lifeStatus;
   }
 }

@@ -15,12 +15,19 @@ export class GamePageComponent implements OnInit {
   ngOnInit() {
     this.player = this.socketService.getPlayer();
     this.getRound();
+    this.getLifeStatus();
   }
 
   getRound(): void {
     setInterval(() => {
       this.round = this.socketService.getRound();
     }, 200);
+  }
+
+  getLifeStatus(): void {
+    setInterval(() => {
+      this.player.lifeStatus = this.socketService.getLifeStatus();
+    }, 1000);
   }
 
 }

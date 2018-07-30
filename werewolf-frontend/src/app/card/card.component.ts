@@ -19,4 +19,19 @@ export class CardComponent implements OnInit {
   toggleCard(): void {
     this.showCard = !this.showCard;
   }
+
+  getLifeStatusCSS(): object {
+    if (this.player.lifeStatus === 'alive') {
+      return {
+        'alive': true,
+        'dead': false
+      };
+    }
+    if (this.player.lifeStatus === 'dead') {
+      return {
+        'alive': false,
+        'dead': true
+      };
+    }
+  }
 }

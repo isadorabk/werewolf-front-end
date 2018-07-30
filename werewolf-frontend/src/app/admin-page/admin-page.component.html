@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="admin_page_playersList">
-     <app-player-list-item *ngFor="let player of players" [player]="player"></app-player-list-item> 
+     <app-player-list-item *ngFor="let player of players" [player]="player" [gameId]="gameId"></app-player-list-item> 
   </div>
   <div class="admin_page_start" *ngIf="!gameHasStarted">
     <button class="admin_page_start_button" (click)="startGame()">START</button>
