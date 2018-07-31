@@ -8,16 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardComponent implements OnInit {
   @Input() player;
   card = {};
-  showCard = true;
+  showCard = false;
 
   constructor() { }
 
   ngOnInit() {
     this.card = this.player.card[this.player.role]
+    if(this.player.lifeStatus === 'dead') this.showCard = false;
   }
 
   toggleCard(): void {
-    this.showCard = !this.showCard;
+    if (this.player.lifeStatus === 'alive') this.showCard = !this.showCard;
+    else this.showCard = false;
   }
 
   getCSSClasses(flag: string): object {

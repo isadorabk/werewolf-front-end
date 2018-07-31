@@ -6,19 +6,43 @@
 
 .card_body
   +flex($direction: column, $align: center, $justify: space-evenly)
-  background-color: $bg-color
   height: 350px
   width: 250px
-  border: solid $primary
+  border: solid
   border-radius: 10px
   margin-bottom: 20px
+  // position: absolute
+  // transition: transform .5s linear 0s
+  // backface-visibility: hidden
+
+.front
+  // transform: perspective(1000px) rotateY(180deg)
+  background-color: $bg-color
+  border-color: $primary
+  // &:hover
+  //   transform: perspective(1000px) rotateY(0deg)
+
+.back
+  // transform: perspective(1000px) rotateY(0deg)
+  background-color: $grey
+  border-color: $grey
+  // &:hover
+  //   transform: perspective(1000px) rotateY(-180deg)
+
+
+// .card_body:hover .front
+//   transform: perspective(1000px) rotateY(0deg)
+
+// .card_body:hover .back
+//   transform: perspective(1000px) rotateY(-180deg)
 
 .card_body_logo
-  width: 150px
-  height: 150px
+  width: 200px
+  height: 200px
 
 .card_body_logo_img
   height: 100%
+  filter: grayscale(1)
 
 .card_body_text
   +flex($direction: column, $align: center)
@@ -26,7 +50,7 @@
 
 .card_body_text_title
   color: $grey
-  font-size: 1.5em
+  font-size: 1.3em
   font-weight: 500
   width: 150px
   text-align: center
@@ -34,7 +58,23 @@
 .card_body_text_description
   width: 230px
   text-align: center
-  font-size: 1.3em
+  font-size: 1em
+  color: $grey
+
+.card_back_logo
+  width: 150px
+  height: 150px
+
+.card_back_img
+  height: 100%
+
+.card_back_title
+  color: $white
+  margin-top: -90px
+  width: 100px
+  text-align: center
+  font-size: 0.8em
+  font-weight: 500
 
 .alive
   color: $green
