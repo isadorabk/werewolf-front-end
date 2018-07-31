@@ -5,4 +5,5 @@ export class Player {
   lifeStatus: string;
   socketId?: any;
   card?: object;
+  winner?: boolean;
 }

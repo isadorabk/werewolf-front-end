@@ -9,6 +9,7 @@ import { SocketService } from '../socket.service';
 export class GamePageComponent implements OnInit {
   player;
   gameStarted = false;
+  gameEnded = false;
 
   constructor(
     private socketService: SocketService
@@ -27,9 +28,10 @@ export class GamePageComponent implements OnInit {
       case 'updateLifeStatus':
         this.player.lifeStatus = payload;
         break;
-
-
-    
+      case 'gameEnd':
+        this.gameEnded = true;
+        this.player = payload;
+        break;
       default:
         break;
     }
