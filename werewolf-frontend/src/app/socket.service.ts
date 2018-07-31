@@ -3,8 +3,8 @@ import * as io from 'socket.io-client';
 // import { LifecycleHooks } from '../../node_modules/@angular/compiler/src/lifecycle_reflector';
 import { Command } from '../../node_modules/protractor';
 
-const SERVER_URL = "http://localhost:3000";
-// const SERVER_URL = "http://192.168.1.255:3000";
+const SERVER_URL = "http://192.168.1.153:3000";
+// const SERVER_URL = "http://localhost:3000";
 
 @Injectable({
   providedIn: 'root'
