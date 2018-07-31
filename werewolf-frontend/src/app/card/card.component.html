@@ -1,14 +1,12 @@
 <div class="card">
-<!-- <div class="card_body back" *ngIf="!showCard"> -->
-<div class="card_body back" *ngIf="!showCard || (player.lifeStatus === 'dead')" (click)="toggleCard()">
+  <div class="card_body back" *ngIf="!showCard && (player.lifeStatus === 'alive') && !gameEnded" (click)="toggleCard()">
     <div class="card_back_logo">
       <img src="../../assets/img/game-logo.png" alt="" class="card_back_img">
     </div>
     <div class="card_back_title">WEREWOLF GAME</div>
   </div>
 
-<!-- <div class="card_body front" *ngIf="showCard" (touchstart)="toggleCard()" (touchend)="toggleCard()"> -->
-  <div class="card_body front" *ngIf="showCard && (player.lifeStatus === 'alive')" (click)="toggleCard()">
+  <div class="card_body front" *ngIf="showCard && (player.lifeStatus === 'alive') && !gameEnded" (click)="toggleCard()">
     <div class="card_body_logo">
       <img src={{card.imgUrl}} alt="" class="card_body_logo_img">
     </div>
@@ -16,6 +14,25 @@
       <div class="card_body_text_title">{{card.title | uppercase}}</div>
       <div class="card_body_text_description">{{card.description}}</div>
     </div>
+  </div>
+
+  <div class="card_body_loser" *ngIf="(player.lifeStatus === 'dead') || (gameEnded && !player.winner)">
+    <div class="card_back_logo">
+      <img src="../../assets/img/game-logo.png" alt="" class="card_back_img">
+    </div>
+  </div>
+  <div class="card_loser_title_container" *ngIf="(player.lifeStatus === 'dead') || (gameEnded && !player.winner)">
+    <h1 class="card_loser_title">YOU FAILED YOUR MISSION!</h1>
+  </div>
+
+  <div class="card_body_winner" *ngIf="(gameEnded &&player.winner)">
+    <div class="card_back_logo">
+      <img src="../../assets/img/game-logo.png" alt="" class="card_back_img">
+    </div>
+  </div>
+  <div class="card_winner_title_container" *ngIf="(gameEnded &&player.winner)">
+    <h1 class="card_winner_title" *ngIf="player.role === 'werewolf'">CONGRATS! <br/> YOU TOOK OVER THE VILLAGE!</h1>
+    <h1 class="card_winner_title" *ngIf="player.role !== 'werewolf'">CONGRATS! <br/> YOU SAVED THE VILLAGE!</h1>
   </div>
 
   <div [ngClass]="getCSSClasses('lifeStatus')">{{player.lifeStatus | uppercase}}</div>

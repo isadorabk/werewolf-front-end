@@ -13,17 +13,18 @@ export class AdminPageComponent implements OnInit {
   faSun = faSun;
   faMoon = faMoon;
   gameStarted = false;
+  gameEnded = false;
   gameId: string;
   players = [];
-
+  werewolves = [];
+  specialRoles = [];
+  villagers = [];
 
   constructor(private apiClientService: ApiClientService, private socketService: SocketService) { }
 
   ngOnInit() {
-    this.gameId = this.apiClientService.getGameId(); //TODO: recfact with rout
-
+    this.gameId = this.apiClientService.getGameId();
     this.socketService.message.subscribe(this.messageReceived);
-
   }
 
   messageReceived = ({ command, payload }) => {
@@ -31,21 +32,34 @@ export class AdminPageComponent implements OnInit {
       case 'playerCreated':
         this.players.push(payload);
         break;
-      
       case 'playersList':
-        this.players = payload;
+        this.werewolves = payload.werewolves;
+        this.specialRoles = payload.specialRoles;
+        this.villagers = payload.villagers;
+        this.gameStarted = true;
         break;
-      
       case 'updateLifeStatus':
-        this.players.forEach(player => {
-          if (player.playerId === payload.playerId) {
-            player.lifeStatus = payload.lifeStatus;
-          }
-        });
+        if (payload.role === 'werewolf') {
+          this.werewolves.forEach(werewolf => {
+            if (werewolf.playerId === payload.playerId) werewolf.lifeStatus = payload.lifeStatus;
+          });
+        }
+        if (payload.role === 'villager') {
+          this.villagers.forEach(villager => {
+            if (villager.playerId === payload.playerId) villager.lifeStatus = payload.lifeStatus;
+          });
+        } else {
+          this.specialRoles.forEach(specialRole => {
+            if (specialRole.playerId === payload.playerId) specialRole.lifeStatus = payload.lifeStatus;
+          });
+        }
         break;
-        
-        
-    
+      case 'gameEnd':
+        this.werewolves = payload.werewolves;
+        this.specialRoles = payload.specialRoles;
+        this.villagers = payload.villagers;
+        this.gameEnded = true;
+        break;
       default:
         break;
     }
@@ -53,7 +67,6 @@ export class AdminPageComponent implements OnInit {
 
   startGame(): void {
     this.socketService.startGame(this.gameId);
-    this.gameStarted = true;
   }
 
   startDayRound(): void {

@@ -10,6 +10,7 @@ import { Player } from '../classes/player';
 export class PlayerListItemComponent implements OnInit {
   @Input() player: Player;
   @Input() gameId: string;
+  @Input() gameEnded;
   card = {};
   
   constructor(private socketService: SocketService) { }

@@ -31,11 +31,10 @@ export class ApiClientService {
     return this.http.post<Player>(this.server + "/new-player", player, httpOptions)
   }
 
-  //TODO: refactoring
   sendGameId(gameIdSource): void {
     this.gameId = gameIdSource;
   }
-  //TODO: refactoring
+
   getGameId(): string {
     return this.gameId;
   }

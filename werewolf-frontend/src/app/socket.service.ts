@@ -19,23 +19,11 @@ export class SocketService {
 
   initSocket(gameId: string, identification?: any): void {
     this.socket = io.connect(this.server);
-    console.log(this.socket);
-    
     this.socket.on('connect', () => {
       if (identification.adminCode) {
-        console.log('Admin connected', this.socket.id);
         this.socket.emit('createGame', gameId, identification.adminCode);
       } else {
-        console.log('Player connected', this.socket.id);
         this.socket.emit('joinGame', gameId, identification.playerId);
-      }
-    });
-
-    this.socket.on('disconnect', () => {
-      if (identification.adminCode) {
-        console.log('Admin disconnected', this.socket.id);
-      } else {
-        console.log('Player disconnected', this.socket.id);
       }
     });
 
