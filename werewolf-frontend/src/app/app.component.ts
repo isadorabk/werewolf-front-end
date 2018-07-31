@@ -7,10 +7,7 @@ import { SocketService } from './socket.service';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
-  day = "rgba(245, 203, 0)"
-  night = "rgba(29, 88, 155)"
-  bgColor = "#fafafa"
+  title = 'Werewolf Game';
   round = 'waiting';
 
   constructor(private socketService: SocketService) { }
@@ -23,10 +20,7 @@ export class AppComponent implements OnInit {
     switch (command) {
       case 'updateRound':
         this.round = payload;
-        if (this.round === 'day') this.bgColor = this.day;
-        if (this.round === 'night') this.bgColor = this.night;
         break;
-
       default:
         break;
     }

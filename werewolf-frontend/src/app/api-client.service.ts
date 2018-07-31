@@ -10,7 +10,7 @@ const httpOptions = {
   })
 };
 
-const SERVER_URL = "http://192.168.1.153:3000";
+const SERVER_URL = "http://werewolf-game.local:3000";
 // const SERVER_URL = "http://localhost:3000";
 
 @Injectable({
