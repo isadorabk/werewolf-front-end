@@ -6,7 +6,9 @@
     </div>
   </div>
   <div class="game_page_body">
-    <div class="game_page_message" *ngIf="!gameStarted">WAITING FOR OTHER PLAYERS TO JOIN</div>
+    <div class="game_page_message" *ngIf="!gameStarted">WAIT...
+      <br/>
+      <br/> THE WINTER IS COMING...</div>
     <app-card [player]="player" [gameEnded]="gameEnded" *ngIf="gameStarted"></app-card>
   </div>
 </div>

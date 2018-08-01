@@ -10,7 +10,6 @@
   width: 250px
   border: solid
   border-radius: 10px
-  margin-bottom: 20px
 
 .front
   background-color: $bg-color
@@ -60,64 +59,37 @@
   font-size: 0.8em
   font-weight: 500
 
-.card_body_loser
+.card_title_container
   +flex($align: center, $justify: center)
   height: 350px
   width: 250px
   border: solid
   border-radius: 10px
-  margin-bottom: 20px
-  border-color: $red
-  background-color: $primary
-
-.card_loser_title_container
-  +flex($align: center, $justify: center)
-  height: 350px
-  width: 250px
-  border: solid
-  border-radius: 10px
-  margin-bottom: 20px
-  border-color: $red
   background-color: rgba(52,53,63, 0.8)
   position: absolute
 
-.card_loser_title
-  color: $red
-  font-size: 1.7em
-  font-weight: 600
-  max-height: 350px
-  max-width: 250px
-  text-align: center
-
-.card_body_winner
-  +flex($align: center, $justify: center)
-  height: 350px
-  width: 250px
-  border: solid
-  border-radius: 10px
-  margin-bottom: 20px
-  border-color: $green
+.end
   background-color: $primary
 
-.card_winner_title_container
-  +flex($align: center, $justify: center)
-  height: 350px
-  width: 250px
-  border: solid
-  border-radius: 10px
-  margin-bottom: 20px
+.winner
   border-color: $green
-  background-color: rgba(52,53,63, 0.8)
-  position: absolute
 
-.card_winner_title
-  color: $green
+.loser
+  border-color: $red
+
+.card_title
   font-size: 1.7em
   font-weight: 600
   max-height: 350px
   max-width: 250px
   text-align: center
   padding: 10px
+
+.loser_title
+  color: $red
+
+.winner_title
+  color: $green
 
 .alive
   color: $green
@@ -126,6 +98,7 @@
   background-color: $bg-color
   font-size: 1.3em
   padding: 5px 10px
+  margin-top: 20px
 
 .dead
   color: $red
@@ -134,3 +107,4 @@
   background-color: $bg-color
   font-size: 1.3em
   padding: 5px 10px
+  margin-top: 20px

@@ -16,23 +16,24 @@
     </div>
   </div>
 
-  <div class="card_body_loser" *ngIf="(player.lifeStatus === 'dead') || (gameEnded && !player.winner)">
+  <div class="card_body end loser" *ngIf="(player.lifeStatus === 'dead') || (gameEnded && !player.winner)">
     <div class="card_back_logo">
       <img src="../../assets/img/game-logo.png" alt="" class="card_back_img">
     </div>
   </div>
-  <div class="card_loser_title_container" *ngIf="(player.lifeStatus === 'dead') || (gameEnded && !player.winner)">
-    <h1 class="card_loser_title">YOU FAILED YOUR MISSION!</h1>
+  <div class="card_title_container loser" *ngIf="(player.lifeStatus === 'dead') || (gameEnded && !player.winner)">
+     <h1 class="card_title loser_title">YOU FAILED YOUR MISSION!</h1>
   </div>
 
-  <div class="card_body_winner" *ngIf="(gameEnded &&player.winner)">
+  <div class="card_body end winner" *ngIf="(gameEnded && player.winner)">
     <div class="card_back_logo">
       <img src="../../assets/img/game-logo.png" alt="" class="card_back_img">
     </div>
   </div>
-  <div class="card_winner_title_container" *ngIf="(gameEnded &&player.winner)">
-    <h1 class="card_winner_title" *ngIf="player.role === 'werewolf'">CONGRATS! <br/> YOU TOOK OVER THE VILLAGE!</h1>
-    <h1 class="card_winner_title" *ngIf="player.role !== 'werewolf'">CONGRATS! <br/> YOU SAVED THE VILLAGE!</h1>
+  <div class="card_title_container winner" *ngIf="(gameEnded && player.winner)">
+    <h1 class="card_title winner_title" *ngIf="player.role === 'werewolf'">CONGRATS! <br/> YOU TOOK OVER THE VILLAGE!</h1>
+    <h1 class="card_title winner_title" *ngIf="player.role !== 'werewolf'">CONGRATS!
+  <br/> YOU SAVED THE VILLAGE!</h1>
   </div>
 
   <div [ngClass]="getCSSClasses('lifeStatus')">{{player.lifeStatus | uppercase}}</div>
