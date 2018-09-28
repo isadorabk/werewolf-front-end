@@ -3,8 +3,8 @@ import * as io from 'socket.io-client';
 // import { LifecycleHooks } from '../../node_modules/@angular/compiler/src/lifecycle_reflector';
 import { Command } from '../../node_modules/protractor';
 
-const SERVER_URL = "http://werewolf-game.local:3000";
-// const SERVER_URL = "http://localhost:3000";
+// const SERVER_URL = "http://werewolf-game.local:3000";
+const SERVER_URL = "http://localhost:3000";
 
 @Injectable({
   providedIn: 'root'
