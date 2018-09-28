@@ -38,5 +38,5 @@ export class ApiClientService {
   getGameId(): string {
     return this.gameId;
   }
-  
+
 }
