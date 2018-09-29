@@ -34,8 +34,8 @@ export class GamePageComponent implements OnInit {
   messageReceived = ({command, payload}) => {
     switch (command) {
       case 'playerInfo':
-        this.player = payload;
-        this.gameStarted = true;
+        this.player = payload.playerInfo;
+        if (payload.started) this.gameStarted = true;
         break;
       case 'updateLifeStatus':
         this.player.lifeStatus = payload;
@@ -44,7 +44,7 @@ export class GamePageComponent implements OnInit {
         this.gameEnded = true;
         //TODO: Update right payload
         this.player = payload;
-        localStorage.setItem('game',null);
+        localStorage.setItem('game',undefined);
         break;
       default:
         break;
