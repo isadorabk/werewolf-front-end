@@ -19,7 +19,7 @@ export class GamePageComponent implements OnInit {
 
   ngOnInit() {
     let game = JSON.parse(localStorage.getItem('game'));
-    if(game.hasOwnProperty('gameCode') && !game.adminCode) {
+    if(game && game.hasOwnProperty('gameCode') && !game.adminCode) {
       const playerId = { playerId: game.playerId };
       this.socketService.initSocket(game.gameCode, playerId);
     } else {
