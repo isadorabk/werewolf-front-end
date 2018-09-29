@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../socket.service';
+import { ApiClientService } from '../api-client.service';
 
 @Component({
   selector: 'app-game-page',
@@ -12,11 +13,22 @@ export class GamePageComponent implements OnInit {
   gameEnded = false;
 
   constructor(
-    private socketService: SocketService
+    private socketService: SocketService,
+    private apiClientService: ApiClientService,
   ) { }
 
   ngOnInit() {
+    let game = JSON.parse(localStorage.getItem('game'));
+    if(game.hasOwnProperty('gameCode') && !game.adminCode) {
+      const playerId = { playerId: game.playerId };
+      this.socketService.initSocket(game.gameCode, playerId);
+    } else {
+      game = this.apiClientService.getGame();
+      if (game.gameCode) localStorage.setItem('game',JSON.stringify(game));
+      else this.gameEnded = true;
+    }
     this.socketService.message.subscribe(this.messageReceived);
+    
   }
 
   messageReceived = ({command, payload}) => {
@@ -30,7 +42,9 @@ export class GamePageComponent implements OnInit {
         break;
       case 'gameEnd':
         this.gameEnded = true;
+        //TODO: Update right payload
         this.player = payload;
+        localStorage.setItem('game',null);
         break;
       default:
         break;

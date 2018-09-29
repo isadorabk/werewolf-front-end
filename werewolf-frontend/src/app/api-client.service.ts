@@ -19,7 +19,9 @@ const SERVER_URL = "http://localhost:3000";
 export class ApiClientService {
 
   private server = SERVER_URL;
-  gameId: string;
+  gameCode: string;
+  playerId: string;
+  adminCode: string;
 
   constructor(private http: HttpClient) { }
 
@@ -32,11 +34,21 @@ export class ApiClientService {
   }
 
   setGameId(gameIdSource): void {
-    this.gameId = gameIdSource;
+    this.gameCode = gameIdSource;
+  }
+
+  setGame(gameCode, adminCode, playerId): void {
+    this.gameCode = gameCode;
+    this.adminCode = adminCode;
+    this.playerId = playerId;
+  }
+
+  getGame() {
+    return {gameCode:this.gameCode, adminCode:this.adminCode, playerId:this.playerId};
   }
 
   getGameId(): string {
-    return this.gameId;
+    return this.gameCode;
   }
 
 }
