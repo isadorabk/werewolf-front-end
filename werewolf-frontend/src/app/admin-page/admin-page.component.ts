@@ -3,6 +3,7 @@ import { faSun } from '@fortawesome/free-solid-svg-icons';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { ApiClientService } from '../api-client.service';
 import { SocketService } from '../socket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
@@ -20,7 +21,9 @@ export class AdminPageComponent implements OnInit {
   specialRoles = [];
   villagers = [];
 
-  constructor(private apiClientService: ApiClientService, private socketService: SocketService) { }
+  constructor(private apiClientService: ApiClientService, 
+    private socketService: SocketService,
+    private router: Router) { }
 
   ngOnInit() {
     let game = JSON.parse(localStorage.getItem('admin'));
@@ -95,6 +98,10 @@ export class AdminPageComponent implements OnInit {
 
   startNightRound(): void {
     this.socketService.startRound(this.gameId, 'night');
+  }
+
+  goHome(): void {
+    this.router.navigateByUrl('/');
   }
 
 }

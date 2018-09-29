@@ -37,4 +37,5 @@
     <button class="admin_page_game_buttons_day" (click)="startDayRound()"><fa-icon [icon]="faSun"></fa-icon></button>
     <button class="admin_page_game_buttons_night" (click)="startNightRound()"><fa-icon [icon]="faMoon"></fa-icon></button>
   </div>
+  <button class="admin_home_button" *ngIf="gameEnded" (click)="goHome()">HOME</button>
 </div>

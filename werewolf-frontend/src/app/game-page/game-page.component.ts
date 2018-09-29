@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../socket.service';
 import { ApiClientService } from '../api-client.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-page',
@@ -15,6 +16,7 @@ export class GamePageComponent implements OnInit {
   constructor(
     private socketService: SocketService,
     private apiClientService: ApiClientService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -49,6 +51,10 @@ export class GamePageComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  goHome(): void {
+    this.router.navigateByUrl('/');
   }
 
 }
