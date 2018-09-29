@@ -12,20 +12,20 @@
   <div class="admin_page_playersList">
 
     <ng-container *ngFor="let player of players">
-      <app-player-list-item *ngIf="!gameStarted" [player]="player" [gameId]="gameId" [gameEnded]="gameEnded"></app-player-list-item>
+      <app-player-list-item *ngIf="!gameStarted" [player]="player" [gameId]="gameId" [gameStarted]="gameStarted" [gameEnded]="gameEnded"></app-player-list-item>
     </ng-container>
 
     <div class="role_title" *ngIf="gameStarted">WEREWOLVES</div>
     <ng-container *ngFor="let player of werewolves">
-      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameEnded]="gameEnded"></app-player-list-item>
+      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameStarted]="gameStarted" [gameEnded]="gameEnded"></app-player-list-item>
     </ng-container>
     <div class="role_title" *ngIf="gameStarted">SPECIAL ROLES</div>
     <ng-container *ngFor="let player of specialRoles">
-      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameEnded]="gameEnded"></app-player-list-item>
+      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameStarted]="gameStarted" [gameEnded]="gameEnded"></app-player-list-item>
     </ng-container>
     <div class="role_title" *ngIf="gameStarted">VILLAGERS</div>
     <ng-container *ngFor="let player of villagers">
-      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameEnded]="gameEnded"></app-player-list-item>
+      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameStarted]="gameStarted" [gameEnded]="gameEnded"></app-player-list-item>
     </ng-container>
 
   </div>
