@@ -33,10 +33,6 @@ export class ApiClientService {
     return this.http.post<Player>(this.server + "/new-player", player, httpOptions)
   }
 
-  setGameId(gameIdSource): void {
-    this.gameCode = gameIdSource;
-  }
-
   setGame(gameCode, adminCode, playerId): void {
     this.gameCode = gameCode;
     this.adminCode = adminCode;
@@ -45,10 +41,6 @@ export class ApiClientService {
 
   getGame() {
     return {gameCode:this.gameCode, adminCode:this.adminCode, playerId:this.playerId};
-  }
-
-  getGameId(): string {
-    return this.gameCode;
   }
 
 }
