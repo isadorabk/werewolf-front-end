@@ -40,6 +40,7 @@ export class GamePageComponent implements OnInit {
         this.player = payload.playerInfo;
         if (payload.started) this.gameStarted = true;
         if (payload.ended) this.gameEnded = true;
+        if (this.gameEnded) localStorage.setItem('game',null);
         break;
       case 'updateLifeStatus':
         this.player.lifeStatus = payload;
