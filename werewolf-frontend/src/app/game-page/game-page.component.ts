@@ -20,7 +20,8 @@ export class GamePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let game = JSON.parse(localStorage.getItem('game'));
+    let game;
+    if (localStorage.getItem('game') && localStorage.getItem('game')!=='undefined') game = JSON.parse(localStorage.getItem('game'));
     if(game && game.hasOwnProperty('gameCode') && !game.adminCode) {
       const playerId = { playerId: game.playerId };
       this.socketService.initSocket(game.gameCode, playerId);
@@ -29,6 +30,7 @@ export class GamePageComponent implements OnInit {
       if (game.gameCode) localStorage.setItem('game',JSON.stringify(game));
       else this.gameEnded = true;
     }
+    console.log(this.gameEnded);
     this.socketService.message.subscribe(this.messageReceived);
     
   }
@@ -38,6 +40,8 @@ export class GamePageComponent implements OnInit {
       case 'playerInfo':
         this.player = payload.playerInfo;
         if (payload.started) this.gameStarted = true;
+        console.log(this.player);
+        console.log(this.gameStarted);
         break;
       case 'updateLifeStatus':
         this.player.lifeStatus = payload;
@@ -46,7 +50,7 @@ export class GamePageComponent implements OnInit {
         this.gameEnded = true;
         //TODO: Update right payload
         this.player = payload;
-        localStorage.setItem('game',undefined);
+        localStorage.setItem('game',null);
         break;
       default:
         break;
