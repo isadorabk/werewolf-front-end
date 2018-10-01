@@ -9,9 +9,9 @@
     <div class="game_page_message" *ngIf="!gameStarted && !gameEnded">WAIT...
       <br/>
       <br/> THE WINTER IS COMING...</div>
-      <div class="game_page_message" *ngIf="gameEnded">
-        <br/> YOU NEED TO JOIN A NEW GAME <br/></div>
-        <button class="game_home_button" *ngIf="gameEnded" (click)="goHome()">HOME</button>
+      <button class="game_home_button" *ngIf="gameEnded" (click)="goHome()">HOME</button>
+    <div class="game_page_message" *ngIf="gameEnded">
+      <br/> YOU NEED TO JOIN A NEW GAME <br/></div>
     <app-card [player]="player" [gameEnded]="gameEnded" *ngIf="gameStarted"></app-card>
   </div>
 </div>
