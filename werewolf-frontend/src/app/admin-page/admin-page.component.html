@@ -29,7 +29,7 @@
     </ng-container>
 
   </div>
-  <div class="admin_page_start" *ngIf="!gameStarted  && players.length > 4">
+  <div class="admin_page_start" *ngIf="!gameStarted && !gameEnded && players.length > 4">
     <button class="admin_page_start_button" (click)="startGame()">START</button>
   </div>
 
