@@ -10,6 +10,8 @@ export class GamePageComponent implements OnInit {
   player;
   gameStarted = false;
   gameEnded = false;
+  voting = true;  // need to change later for false as default
+  players;
 
   constructor(
     private socketService: SocketService
@@ -31,6 +33,10 @@ export class GamePageComponent implements OnInit {
       case 'gameEnd':
         this.gameEnded = true;
         this.player = payload;
+        break;
+      case 'voting':
+        this.voting = true;
+        this.players = payload;   // maybe need to change?
         break;
       default:
         break;
