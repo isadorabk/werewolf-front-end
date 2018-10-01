@@ -10,7 +10,7 @@ export class GamePageComponent implements OnInit {
   player;
   gameStarted = false;
   gameEnded = false;
-  voting = true;  // need to change later for false as default
+  voting = false;
   players;
 
   constructor(
@@ -36,11 +36,20 @@ export class GamePageComponent implements OnInit {
         break;
       case 'startVote':
         this.voting = true;
-        this.players = payload;   // maybe need to change?
+        this.players = this.convertToVillagers(payload);
         break;
       default:
         break;
     }
+  }
+
+  convertToVillagers = players => {
+    for (let id in players) {
+      if (players.hasOwnProperty(id)) {
+        players[id].role = 'villager';
+      }
+    }
+    return players;
   }
 
 }
