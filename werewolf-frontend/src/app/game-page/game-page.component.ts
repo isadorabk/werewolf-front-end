@@ -34,7 +34,7 @@ export class GamePageComponent implements OnInit {
         this.gameEnded = true;
         this.player = payload;
         break;
-      case 'voting':
+      case 'startVote':
         this.voting = true;
         this.players = payload;   // maybe need to change?
         break;

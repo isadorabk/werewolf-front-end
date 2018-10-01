@@ -77,4 +77,8 @@ export class AdminPageComponent implements OnInit {
     this.socketService.startRound(this.gameId, 'night');
   }
 
+  startVote(): void {
+    this.socketService.startVote(this.gameId);
+  }
+
 }
