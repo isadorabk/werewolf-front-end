@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Player } from '../classes/player';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-player-voting',
@@ -8,10 +9,11 @@ import { Player } from '../classes/player';
 })
 export class PlayerVotingComponent implements OnInit {
   @Input() players;
+  @Input() gameId;
   isVoted = false;
   vote = 'vote';
 
-  constructor() { }
+  constructor(private socketService: SocketService) { }
 
   ngOnInit() {
   }
@@ -19,8 +21,8 @@ export class PlayerVotingComponent implements OnInit {
   voteToKill(player: Player) {
     this.vote = 'voted';
     this.isVoted = true;
-    console.log('parent', player);
-    // this.socketService.voteToKill(this.gameId, this.player.playerId);
+    console.log('child: ', this.gameId);
+    this.socketService.voteToKill(this.gameId, player.playerId);
   }
 
 }

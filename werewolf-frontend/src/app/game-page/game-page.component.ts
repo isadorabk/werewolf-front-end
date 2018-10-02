@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../socket.service';
+import { ApiClientService } from '../api-client.service';
 
 @Component({
   selector: 'app-game-page',
@@ -12,13 +13,17 @@ export class GamePageComponent implements OnInit {
   gameEnded = false;
   voting = false;
   players;
+  gameId;
 
   constructor(
-    private socketService: SocketService
+    private socketService: SocketService,
+    private client: ApiClientService
   ) { }
 
   ngOnInit() {
     this.socketService.message.subscribe(this.messageReceived);
+    this.gameId = this.client.getGameId();
+    console.log('game comp: ', this.gameId);
   }
 
   messageReceived = ({command, payload}) => {
@@ -37,6 +42,9 @@ export class GamePageComponent implements OnInit {
       case 'startVote':
         this.voting = true;
         this.players = this.convertToVillagers(payload);
+        break;
+      case 'updateVotes':
+        console.log(payload);
         break;
       default:
         break;

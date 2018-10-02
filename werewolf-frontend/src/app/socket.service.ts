@@ -49,7 +49,7 @@ export class SocketService {
   }
 
   voteToKill(gameId: string, playerId: string): void {
-    this.socket.emit('vote', gameId, playerId);
+    this.socket.emit('voteToKill', gameId, playerId);
   }
 
   startVote(gameId: string): void {

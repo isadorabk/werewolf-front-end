@@ -23,13 +23,12 @@ export class PlayerListItemComponent implements OnInit {
     this.card = this.player.card[this.player.role]
   }
 
-  killPlayer(): void {
-    // this.socketService.killPlayer(this.gameId, this.player.playerId);
-  }
+  // killPlayer(): void {
+  //   // this.socketService.killPlayer(this.gameId, this.player.playerId);
+  // }
 
   onSubmit(): void {
     if (!this.isVoted) {
-      console.log('voted - child');
       this.player.toVote = 'voted';
       this.submitted.emit(this.player);
     }

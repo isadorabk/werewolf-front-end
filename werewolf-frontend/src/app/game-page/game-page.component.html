@@ -9,7 +9,7 @@
     <div class="game_page_message" *ngIf="!gameStarted">WAIT...
       <br/>
       <br/> THE WINTER IS COMING...</div>
-    <app-player-voting *ngIf="voting" [players]="players"></app-player-voting>
+    <app-player-voting *ngIf="voting" [players]="players" [gameId]="gameId"></app-player-voting>
     <app-card [player]="player" [gameEnded]="gameEnded" *ngIf="gameStarted"></app-card>
   </div>
 </div>
