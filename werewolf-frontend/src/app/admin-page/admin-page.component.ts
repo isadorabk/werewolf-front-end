@@ -3,6 +3,7 @@ import { faSun } from '@fortawesome/free-solid-svg-icons';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { ApiClientService } from '../api-client.service';
 import { SocketService } from '../socket.service';
+import { Player } from '../classes/player';
 
 @Component({
   selector: 'app-admin-page',
@@ -79,6 +80,10 @@ export class AdminPageComponent implements OnInit {
 
   startVote(): void {
     this.socketService.startVote(this.gameId);
+  }
+
+  killPlayer(player: Player): void {
+    this.socketService.killPlayer(this.gameId, player.playerId);
   }
 
 }

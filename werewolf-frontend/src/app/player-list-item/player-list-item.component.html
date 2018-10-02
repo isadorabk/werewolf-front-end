@@ -3,7 +3,13 @@
     <img src={{card.imgUrl}} alt="" class="player_item_role_img">
   </div>
   <div class="player_item_username">{{player.username | uppercase}}</div>
-  <div [ngClass]="getCSSClasses('lifeStatus')" (click)="killPlayer()" *ngIf="!player.winner && !gameEnded">{{player.lifeStatus | uppercase}}</div>
+  <div>
+    <div [ngClass]="getCSSClasses('lifeStatus')" (click)="onSubmit()" *ngIf="accessoryLabel">{{accessoryLabel | uppercase}}</div>
+  </div>
+  <!-- <div *ngIf="!isAdmin">
+      <div [ngClass]="getCSSClasses('lifeStatus')" (click)="voteToKill()" *ngIf="!player.winner && !gameEnded">{{vote | uppercase}}</div>
+  </div> -->
+
   <div class="dead" *ngIf="!player.winner && gameEnded">DEAD</div>
   <div class="winner" *ngIf="player.winner && gameEnded">WINNER</div>
 </div>
