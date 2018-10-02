@@ -23,7 +23,6 @@ export class GamePageComponent implements OnInit {
   ngOnInit() {
     this.socketService.message.subscribe(this.messageReceived);
     this.gameId = this.client.getGameId();
-    console.log('game comp: ', this.gameId);
   }
 
   messageReceived = ({command, payload}) => {
@@ -43,8 +42,8 @@ export class GamePageComponent implements OnInit {
         this.voting = true;
         this.players = this.convertToVillagers(payload);
         break;
-      case 'updateVotes':
-        console.log(payload);
+      case 'finishVote':
+        this.voting = payload;
         break;
       default:
         break;

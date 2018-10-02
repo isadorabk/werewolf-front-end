@@ -21,7 +21,6 @@ export class PlayerVotingComponent implements OnInit {
   voteToKill(player: Player) {
     this.vote = 'voted';
     this.isVoted = true;
-    console.log('child: ', this.gameId);
     this.socketService.voteToKill(this.gameId, player.playerId);
   }
 

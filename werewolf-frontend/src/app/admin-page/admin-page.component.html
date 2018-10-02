@@ -38,6 +38,6 @@
   </div>
 
   <div class="admin_page_start" *ngIf="gameStarted">
-    <button class="admin_page_start_button" (click)="startVote()">VOTE</button>
+    <button class="admin_page_start_button" (click)="initiateVote()">{{voteLabel || 'vote' | uppercase}}</button>
   </div>
 </div>

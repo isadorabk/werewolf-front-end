@@ -56,4 +56,8 @@ export class SocketService {
     this.socket.emit('startVote', gameId);
   }
 
+  finishVote(gameId: string): void {
+    this.socket.emit('finishVote', gameId);
+  }
+
 }

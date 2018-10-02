@@ -20,6 +20,7 @@ export class AdminPageComponent implements OnInit {
   werewolves = [];
   specialRoles = [];
   villagers = [];
+  voteLabel;
 
   constructor(private apiClientService: ApiClientService, private socketService: SocketService) { }
 
@@ -55,6 +56,11 @@ export class AdminPageComponent implements OnInit {
           });
         }
         break;
+      case 'updateVotes':
+        this.werewolves = payload.werewolves;
+        this.specialRoles = payload.specialRoles;
+        this.villagers = payload.villagers;
+        break;
       case 'gameEnd':
         this.werewolves = payload.werewolves;
         this.specialRoles = payload.specialRoles;
@@ -78,8 +84,24 @@ export class AdminPageComponent implements OnInit {
     this.socketService.startRound(this.gameId, 'night');
   }
 
-  startVote(): void {
-    this.socketService.startVote(this.gameId);
+  initiateVote(): void {
+    if (!this.voteLabel || this.voteLabel === 'vote') {
+      this.socketService.startVote(this.gameId);
+      this.voteLabel = 'finish vote';
+      return;
+    } else {
+      this.socketService.finishVote(this.gameId);
+      this.voteLabel = 'vote';
+      this.werewolves.forEach(el => {
+        el.votes = 0;
+      });
+      this.specialRoles.forEach(el => {
+        el.votes = 0;
+      });
+      this.villagers.forEach(el => {
+        el.votes = 0;
+      });
+    }
   }
 
   killPlayer(player: Player): void {
