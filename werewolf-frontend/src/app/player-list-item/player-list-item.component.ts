@@ -30,6 +30,7 @@ export class PlayerListItemComponent implements OnInit {
   onSubmit(): void {
     if (!this.isVoted) {
       console.log('voted - child');
+      this.player.toVote = 'voted';
       this.submitted.emit(this.player);
     }
   }

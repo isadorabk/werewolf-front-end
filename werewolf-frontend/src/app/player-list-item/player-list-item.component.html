@@ -9,6 +9,7 @@
   <!-- <div *ngIf="!isAdmin">
       <div [ngClass]="getCSSClasses('lifeStatus')" (click)="voteToKill()" *ngIf="!player.winner && !gameEnded">{{vote | uppercase}}</div>
   </div> -->
+  <div class="votes" *ngIf="player.votes">{{player.votes}}</div>
 
   <div class="dead" *ngIf="!player.winner && gameEnded">DEAD</div>
   <div class="winner" *ngIf="player.winner && gameEnded">WINNER</div>

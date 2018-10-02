@@ -6,4 +6,6 @@ export class Player {
   socketId?: any;
   card?: object;
   winner?: boolean;
+  toVote: string;
+  votes: number;
 }
