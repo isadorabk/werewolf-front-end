@@ -1,3 +1,3 @@
-<ng-container *ngFor="let player of players">
-  <app-player-list-item [player]="player" [isVoted]="isVoted" [accessoryLabel]="player.toVote" (submitted)="voteToKill($event)"></app-player-list-item>
+<ng-container *ngFor="let playerToDisplay of players">
+  <app-player-list-item [player]="playerToDisplay" [isVoted]="isVoted" [voterLifeStatus]="player.lifeStatus" [accessoryLabel]="playerToDisplay.toVote" (submitted)="voteToKill($event)"></app-player-list-item>
 </ng-container>

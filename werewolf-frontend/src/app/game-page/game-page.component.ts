@@ -14,7 +14,7 @@ export class GamePageComponent implements OnInit {
   gameEnded = false;
   voting = false;
   players;
-  gameId;
+  // gameId;
 
   constructor(
     private socketService: SocketService,
@@ -34,7 +34,7 @@ export class GamePageComponent implements OnInit {
       } else this.gameEnded = true;
     }
     this.socketService.message.subscribe(this.messageReceived);
-    this.gameId = game.gameCode;
+    // this.gameId = game.gameCode;
   }
 
   messageReceived = ({command, payload}) => {
@@ -74,7 +74,7 @@ export class GamePageComponent implements OnInit {
     }
     return players;
   }
-  
+
   goHome(): void {
     this.router.navigateByUrl('/');
   }

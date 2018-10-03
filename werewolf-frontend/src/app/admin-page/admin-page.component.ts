@@ -23,13 +23,13 @@ export class AdminPageComponent implements OnInit {
   villagers = [];
   voteLabel;
 
-  constructor(private apiClientService: ApiClientService, 
+  constructor(private apiClientService: ApiClientService,
     private socketService: SocketService,
     private router: Router) { }
 
   ngOnInit() {
     let game = JSON.parse(localStorage.getItem('admin'));
-    if(game && game.hasOwnProperty('gameCode') && game.adminCode) {
+    if (game && game.hasOwnProperty('gameCode') && game.adminCode) {
       const adminCode = { adminCode: game.adminCode };
       this.socketService.initSocket(game.gameCode, adminCode);
       this.socketService.getAdminInfo(game.gameCode);
@@ -88,7 +88,7 @@ export class AdminPageComponent implements OnInit {
         this.specialRoles = payload.specialRoles;
         this.villagers = payload.villagers;
         this.gameEnded = true;
-        localStorage.setItem('admin',null);
+        localStorage.setItem('admin', null);
         break;
       default:
         break;
@@ -130,7 +130,7 @@ export class AdminPageComponent implements OnInit {
   killPlayer(player: Player): void {
     this.socketService.killPlayer(this.gameId, player.playerId);
   }
-  
+
   goHome(): void {
     this.router.navigateByUrl('/');
   }

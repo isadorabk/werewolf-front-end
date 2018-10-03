@@ -15,6 +15,7 @@ export class PlayerListItemComponent implements OnInit {
   @Input() accessoryLabel;
   @Output() submitted: EventEmitter<Player> = new EventEmitter<Player>();
   @Input() gameStarted;
+  @Input() voterLifeStatus;
 
   card = {};
 
@@ -22,12 +23,12 @@ export class PlayerListItemComponent implements OnInit {
   constructor(private socketService: SocketService) { }
 
   ngOnInit() {
-    this.card = this.player.card[this.player.role]
+    this.card = this.player.card[this.player.role];
   }
 
   onSubmit(): void {
     if (!this.isVoted) {
-      this.player.toVote = 'voted';
+      if (this.voterLifeStatus === "alive") this.player.toVote = 'voted';
       this.submitted.emit(this.player);
     }
   }
@@ -45,7 +46,7 @@ export class PlayerListItemComponent implements OnInit {
         'dead': true
       };
     }
-    return cssClasses;   
+    return cssClasses;
   }
-  
+
 }
