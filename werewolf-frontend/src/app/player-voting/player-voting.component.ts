@@ -10,6 +10,7 @@ import { SocketService } from '../socket.service';
 export class PlayerVotingComponent implements OnInit {
   @Input() players;
   @Input() gameId;
+  @Input() player;
   isVoted = false;
   vote = 'vote';
 
@@ -19,9 +20,12 @@ export class PlayerVotingComponent implements OnInit {
   }
 
   voteToKill(player: Player) {
-    this.vote = 'voted';
-    this.isVoted = true;
-    this.socketService.voteToKill(this.gameId, player.playerId);
+    if (this.player.lifeStatus === 'alive') {
+      this.vote = 'voted';
+      this.isVoted = true;
+      console.log(this.player);
+      this.socketService.voteToKill(this.gameId, player.playerId, this.player.playerId);
+    }
   }
 
 }

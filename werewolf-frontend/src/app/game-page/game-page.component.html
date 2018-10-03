@@ -9,7 +9,7 @@
     <div class="game_page_message" *ngIf="!gameStarted && !gameEnded">WAIT...
       <br/>
       <br/> THE WINTER IS COMING...</div>
-    <app-player-voting *ngIf="voting" [players]="players" [gameId]="gameId"></app-player-voting>
+    <app-player-voting *ngIf="voting" [players]="players" [gameId]="gameId" [player]="player"></app-player-voting>
       <button class="game_home_button" *ngIf="gameEnded" (click)="goHome()">HOME</button>
     <div class="game_page_message" *ngIf="gameEnded">
       <br/> YOU NEED TO JOIN A NEW GAME <br/></div>

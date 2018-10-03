@@ -38,7 +38,7 @@
     <button class="admin_page_game_buttons_night" (click)="startNightRound()"><fa-icon [icon]="faMoon"></fa-icon></button>
   </div>
 
-  <div class="admin_page_start" *ngIf="gameStarted">
+  <div class="admin_page_start" *ngIf="gameStarted && !gameEnded">
     <button class="admin_page_start_button" (click)="initiateVote()">{{voteLabel || 'vote' | uppercase}}</button>
   </div>
   <button class="admin_home_button" *ngIf="gameEnded" (click)="goHome()">HOME</button>
