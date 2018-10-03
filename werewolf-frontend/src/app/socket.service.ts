@@ -36,6 +36,10 @@ export class SocketService {
 
   }
 
+  getAdminInfo(gameId: string): void {
+    this.socket.emit('retrieveGame', gameId)
+  }
+
   startGame(gameId: string): void {
     this.socket.emit('startGame', gameId)
   }

@@ -23,7 +23,7 @@ export class LandpageComponent implements OnInit {
     this.apiClientService.createGame()
       .subscribe(data => {
         const adminCode = { adminCode: data.adminCode };
-        this.apiClientService.setGameId(data.gameId);
+        this.apiClientService.setGame(data.gameId, data.adminCode, null);
         this.socketService.initSocket(data.gameId, adminCode);
         this.router.navigateByUrl('/admin');
       })

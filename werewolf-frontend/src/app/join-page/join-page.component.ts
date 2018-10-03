@@ -33,6 +33,7 @@ export class JoinPageComponent implements OnInit {
         const playerId = { playerId: data.playerId };
         this.apiClientService.setGameId(this.gameCode);
         this.socketService.initSocket(this.gameCode, playerId);
+        this.apiClientService.setGame(this.gameCode, null, data.playerId);
         this.router.navigateByUrl('/game');
       });
   }

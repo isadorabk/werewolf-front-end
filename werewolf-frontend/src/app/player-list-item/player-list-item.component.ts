@@ -14,6 +14,8 @@ export class PlayerListItemComponent implements OnInit {
   @Input() isVoted;
   @Input() accessoryLabel;
   @Output() submitted: EventEmitter<Player> = new EventEmitter<Player>();
+  @Input() gameStarted;
+
   card = {};
 
 
@@ -30,26 +32,20 @@ export class PlayerListItemComponent implements OnInit {
     }
   }
 
-  getCSSClasses(flag: string): object {
+  getCSSClasses(): object {
     let cssClasses;
-    switch (flag) {
-      case 'lifeStatus':
-        if (this.player.lifeStatus === 'alive') {
-          cssClasses = {
-            'alive': true,
-            'dead': false
-          };
-        }
-        if (this.player.lifeStatus === 'dead') {
-          cssClasses = {
-            'alive': false,
-            'dead': true
-          };
-        }
-        return cssClasses;
-      default:
-        break;
+    if (this.player.lifeStatus === 'alive') {
+      cssClasses = {
+        'alive': true,
+        'dead': false
+      };
+    } else if (this.player.lifeStatus === 'dead') {
+      cssClasses = {
+        'alive': false,
+        'dead': true
+      };
     }
+    return cssClasses;   
   }
-
+  
 }

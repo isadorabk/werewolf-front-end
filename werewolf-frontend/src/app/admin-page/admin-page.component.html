@@ -4,31 +4,32 @@
       <div class="admin_page_logo"><img src="../../assets/img/game-logo.png" class="admin_page_logo_img"></div>
       <div class="admin_page_title">WEREWOLF GAME</div>
     </div>
-    <div class="admin_page_gameID">GAME CODE:
+    <div class="admin_page_gameID" *ngIf="!gameEnded">GAME CODE:
       <span class="admin_page_gameID_span">{{gameId}}</span>
     </div>
+    <div class="admin_page_gameID" *ngIf="gameEnded">GAME ENDED</div>
   </div>
   <div class="admin_page_playersList">
 
     <ng-container *ngFor="let player of players">
-      <app-player-list-item *ngIf="!gameStarted" [player]="player" [gameId]="gameId" [gameEnded]="gameEnded"></app-player-list-item>
+      <app-player-list-item *ngIf="!gameStarted" [player]="player" [gameId]="gameId" [gameStarted]="gameStarted" [gameEnded]="gameEnded"></app-player-list-item>
     </ng-container>
 
     <div class="role_title" *ngIf="gameStarted">WEREWOLVES</div>
     <ng-container *ngFor="let player of werewolves">
-      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameEnded]="gameEnded" [accessoryLabel]="player.lifeStatus" (submitted)="killPlayer($event)"></app-player-list-item>
+      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameStarted]="gameStarted" [gameEnded]="gameEnded" [accessoryLabel]="player.lifeStatus" (submitted)="killPlayer($event)"></app-player-list-item>
     </ng-container>
     <div class="role_title" *ngIf="gameStarted">SPECIAL ROLES</div>
     <ng-container *ngFor="let player of specialRoles">
-      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameEnded]="gameEnded" [accessoryLabel]="player.lifeStatus" (submitted)="killPlayer($event)"></app-player-list-item>
+      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameStarted]="gameStarted" [gameEnded]="gameEnded" [accessoryLabel]="player.lifeStatus" (submitted)="killPlayer($event)"></app-player-list-item>
     </ng-container>
     <div class="role_title" *ngIf="gameStarted">VILLAGERS</div>
     <ng-container *ngFor="let player of villagers">
-      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameEnded]="gameEnded" [accessoryLabel]="player.lifeStatus" (submitted)="killPlayer($event)"></app-player-list-item>
+      <app-player-list-item *ngIf="gameStarted" [player]="player" [gameId]="gameId" [gameStarted]="gameStarted" [gameEnded]="gameEnded" [accessoryLabel]="player.lifeStatus" (submitted)="killPlayer($event)"></app-player-list-item>
     </ng-container>
 
   </div>
-  <div class="admin_page_start" *ngIf="!gameStarted  && players.length > 4">
+  <div class="admin_page_start" *ngIf="!gameStarted && !gameEnded && players.length > 4">
     <button class="admin_page_start_button" (click)="startGame()">START</button>
   </div>
 
@@ -40,4 +41,5 @@
   <div class="admin_page_start" *ngIf="gameStarted">
     <button class="admin_page_start_button" (click)="initiateVote()">{{voteLabel || 'vote' | uppercase}}</button>
   </div>
+  <button class="admin_home_button" *ngIf="gameEnded" (click)="goHome()">HOME</button>
 </div>
