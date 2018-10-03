@@ -23,18 +23,18 @@ export class GamePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let game;
-    if (localStorage.getItem('game') && localStorage.getItem('game')!=='undefined') game = JSON.parse(localStorage.getItem('game'));
+    let game = this.apiClientService.getGame();
     if(game && game.hasOwnProperty('gameCode') && !game.adminCode) {
-      const playerId = { playerId: game.playerId };
-      this.socketService.initSocket(game.gameCode, playerId);
+      localStorage.setItem('game',JSON.stringify(game));
     } else {
-      game = this.apiClientService.getGame();
-      if (game.gameCode) localStorage.setItem('game',JSON.stringify(game));
-      else this.gameEnded = true;
+      if (localStorage.getItem('game') && localStorage.getItem('game')!=='undefined') game = JSON.parse(localStorage.getItem('game'));
+      if (game.gameCode) {
+        const playerId = { playerId: game.playerId };
+        this.socketService.initSocket(game.gameCode, playerId);
+      } else this.gameEnded = true;
     }
     this.socketService.message.subscribe(this.messageReceived);
-    this.gameId = this.apiClientService.getGameId();
+    this.gameId = game.gameCode;
   }
 
   messageReceived = ({command, payload}) => {

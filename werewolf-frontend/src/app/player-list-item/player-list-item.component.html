@@ -5,7 +5,7 @@
   <div class="player_item_username">{{player.username | uppercase}}</div>
   <div *ngIf="player.votes" class="alive" >{{player.votes}}</div>
   <div>
-    <div [ngClass]="getCSSClasses()" (click)="onSubmit()" *ngIf="!player.winner && !gameEnded">{{accessoryLabel | uppercase}}</div>
+    <div [ngClass]="getCSSClasses()" (click)="onSubmit()" *ngIf="!player.winner && !gameEnded">{{accessoryLabel || player.lifeStatus | uppercase}}</div>
   </div>
 
   <div class="dead" *ngIf="!player.winner && gameEnded">DEAD</div>
