@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SocketService } from '../socket.service';
 import { Player } from '../classes/player';
 
@@ -11,17 +11,25 @@ export class PlayerListItemComponent implements OnInit {
   @Input() player: Player;
   @Input() gameId: string;
   @Input() gameEnded;
+  @Input() isVoted;
+  @Input() accessoryLabel;
+  @Output() submitted: EventEmitter<Player> = new EventEmitter<Player>();
   @Input() gameStarted;
+
   card = {};
-  
+
+
   constructor(private socketService: SocketService) { }
 
   ngOnInit() {
     this.card = this.player.card[this.player.role]
   }
 
-  killPlayer(): void {
-    if (this.gameStarted) this.socketService.killPlayer(this.gameId, this.player.playerId);
+  onSubmit(): void {
+    if (!this.isVoted) {
+      this.player.toVote = 'voted';
+      this.submitted.emit(this.player);
+    }
   }
 
   getCSSClasses(): object {
@@ -40,5 +48,4 @@ export class PlayerListItemComponent implements OnInit {
     return cssClasses;   
   }
   
-
 }

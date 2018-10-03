@@ -52,5 +52,16 @@ export class SocketService {
     this.socket.emit('killPlayer', gameId, playerId)
   }
 
+  voteToKill(gameId: string, playerId: string): void {
+    this.socket.emit('voteToKill', gameId, playerId);
+  }
+
+  startVote(gameId: string): void {
+    this.socket.emit('startVote', gameId);
+  }
+
+  finishVote(gameId: string): void {
+    this.socket.emit('finishVote', gameId);
+  }
 
 }

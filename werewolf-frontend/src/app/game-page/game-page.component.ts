@@ -12,6 +12,9 @@ export class GamePageComponent implements OnInit {
   player;
   gameStarted = false;
   gameEnded = false;
+  voting = false;
+  players;
+  gameId;
 
   constructor(
     private socketService: SocketService,
@@ -31,7 +34,7 @@ export class GamePageComponent implements OnInit {
       else this.gameEnded = true;
     }
     this.socketService.message.subscribe(this.messageReceived);
-    
+    this.gameId = this.apiClientService.getGameId();
   }
 
   messageReceived = ({command, payload}) => {
@@ -51,11 +54,27 @@ export class GamePageComponent implements OnInit {
         this.player = payload;
         localStorage.setItem('game',null);
         break;
+      case 'startVote':
+        this.voting = true;
+        this.players = this.convertToVillagers(payload);
+        break;
+      case 'finishVote':
+        this.voting = payload;
+        break;
       default:
         break;
     }
   }
 
+  convertToVillagers = players => {
+    for (let id in players) {
+      if (players.hasOwnProperty(id)) {
+        players[id].role = 'villager';
+      }
+    }
+    return players;
+  }
+  
   goHome(): void {
     this.router.navigateByUrl('/');
   }
