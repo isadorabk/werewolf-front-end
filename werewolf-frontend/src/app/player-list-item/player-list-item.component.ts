@@ -11,6 +11,7 @@ export class PlayerListItemComponent implements OnInit {
   @Input() player: Player;
   @Input() gameId: string;
   @Input() gameEnded;
+  @Input() gameStarted;
   card = {};
   
   constructor(private socketService: SocketService) { }
@@ -20,29 +21,24 @@ export class PlayerListItemComponent implements OnInit {
   }
 
   killPlayer(): void {
-    this.socketService.killPlayer(this.gameId, this.player.playerId);
+    if (this.gameStarted) this.socketService.killPlayer(this.gameId, this.player.playerId);
   }
 
-  getCSSClasses(flag: string): object {
+  getCSSClasses(): object {
     let cssClasses;
-    switch (flag) {
-      case 'lifeStatus':
-        if (this.player.lifeStatus === 'alive') {
-          cssClasses = {
-            'alive': true,
-            'dead': false
-          };
-        }
-        if (this.player.lifeStatus === 'dead') {
-          cssClasses = {
-            'alive': false,
-            'dead': true
-          };
-        }
-        return cssClasses;
-      default:
-        break;
+    if (this.player.lifeStatus === 'alive') {
+      cssClasses = {
+        'alive': true,
+        'dead': false
+      };
+    } else if (this.player.lifeStatus === 'dead') {
+      cssClasses = {
+        'alive': false,
+        'dead': true
+      };
     }
+    return cssClasses;   
   }
+  
 
 }

@@ -3,6 +3,7 @@ import { faSun } from '@fortawesome/free-solid-svg-icons';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { ApiClientService } from '../api-client.service';
 import { SocketService } from '../socket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
@@ -20,10 +21,23 @@ export class AdminPageComponent implements OnInit {
   specialRoles = [];
   villagers = [];
 
-  constructor(private apiClientService: ApiClientService, private socketService: SocketService) { }
+  constructor(private apiClientService: ApiClientService, 
+    private socketService: SocketService,
+    private router: Router) { }
 
   ngOnInit() {
-    this.gameId = this.apiClientService.getGameId();
+    let game = JSON.parse(localStorage.getItem('admin'));
+    if(game && game.hasOwnProperty('gameCode') && game.adminCode) {
+      const adminCode = { adminCode: game.adminCode };
+      this.socketService.initSocket(game.gameCode, adminCode);
+      this.socketService.getAdminInfo(game.gameCode);
+      this.gameId = game.gameCode;
+    } else {
+      game = this.apiClientService.getGame();
+      this.gameId = this.apiClientService.getGame().gameCode;
+      if (game.gameCode) localStorage.setItem('admin',JSON.stringify(game));
+      else this.gameEnded = true;
+    }
     this.socketService.message.subscribe(this.messageReceived);
   }
 
@@ -37,6 +51,14 @@ export class AdminPageComponent implements OnInit {
         this.specialRoles = payload.specialRoles;
         this.villagers = payload.villagers;
         this.gameStarted = true;
+        break;
+      case 'retrieveGame':
+        if (payload.werewolves) this.werewolves = payload.werewolves;
+        if (payload.specialRoles) this.specialRoles = payload.specialRoles;
+        if (payload.villagers) this.villagers = payload.villagers;
+        if (payload.playersList) this.players = payload.playersList;
+        if (payload.started) this.gameStarted = true;
+        if (payload.ended) this.gameEnded = true;
         break;
       case 'updateLifeStatus':
         if (payload.role === 'werewolf') {
@@ -59,6 +81,7 @@ export class AdminPageComponent implements OnInit {
         this.specialRoles = payload.specialRoles;
         this.villagers = payload.villagers;
         this.gameEnded = true;
+        localStorage.setItem('admin',null);
         break;
       default:
         break;
@@ -75,6 +98,10 @@ export class AdminPageComponent implements OnInit {
 
   startNightRound(): void {
     this.socketService.startRound(this.gameId, 'night');
+  }
+
+  goHome(): void {
+    this.router.navigateByUrl('/');
   }
 
 }
