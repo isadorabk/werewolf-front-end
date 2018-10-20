@@ -10,8 +10,7 @@ const httpOptions = {
   })
 };
 
-const SERVER_URL = "http://werewolf-game.local:3000";
-// const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = "http://localhost:3000";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,9 @@ const SERVER_URL = "http://werewolf-game.local:3000";
 export class ApiClientService {
 
   private server = SERVER_URL;
-  gameId: string;
+  gameCode: string;
+  playerId: string;
+  adminCode: string;
 
   constructor(private http: HttpClient) { }
 
@@ -31,12 +32,14 @@ export class ApiClientService {
     return this.http.post<Player>(this.server + "/new-player", player, httpOptions)
   }
 
-  sendGameId(gameIdSource): void {
-    this.gameId = gameIdSource;
+  setGame(gameCode, adminCode, playerId): void {
+    this.gameCode = gameCode;
+    this.adminCode = adminCode;
+    this.playerId = playerId;
   }
 
-  getGameId(): string {
-    return this.gameId;
+  getGame() {
+    return {gameCode:this.gameCode, adminCode:this.adminCode, playerId:this.playerId};
   }
-  
+
 }

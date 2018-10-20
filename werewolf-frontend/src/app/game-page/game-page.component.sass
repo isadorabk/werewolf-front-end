@@ -46,8 +46,34 @@
   font-weight: 600
   color: $primary
 
+.game_page_end_message
+  width: 240px
+  text-align: center
+  font-size: 1em
+  font-weight: bold
+  color: $primary
+  margin-bottom: 15px
+
 .game_page_spin
   border: solid black
   width: 15px
   height: 15px
   margin-top: 50px
+
+.game_home_button
+  box-sizing: border-box
+  +flex($justify:center, $align:center)
+  height: 40px
+  width: 150px
+  cursor: pointer
+  color: $white
+  font-weight: 600
+  font-size: 1em
+  letter-spacing: 0.8px
+  background: $primary
+  padding: 0px 20px
+  box-shadow: 4px 4px 0px 0px rgba(50,50,50,0.4)
+  transition: all ease 0.5s
+  border: none
+  outline: none
+  border-radius: 10px

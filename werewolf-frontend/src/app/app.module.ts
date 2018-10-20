@@ -12,6 +12,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { GamePageComponent } from './game-page/game-page.component';
 import { PlayerListItemComponent } from './player-list-item/player-list-item.component';
 import { CardComponent } from './card/card.component';
+import { PlayerVotingComponent } from './player-voting/player-voting.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CardComponent } from './card/card.component';
     AdminPageComponent,
     GamePageComponent,
     PlayerListItemComponent,
-    CardComponent
+    CardComponent,
+    PlayerVotingComponent
   ],
   imports: [
     BrowserModule,
