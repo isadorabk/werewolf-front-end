@@ -11,8 +11,8 @@
       <br/> THE WINTER IS COMING...</div>
     <app-player-voting *ngIf="voting" [players]="players" [player]="player"></app-player-voting>
       <button class="game_home_button" *ngIf="gameEnded" (click)="goHome()">HOME</button>
-    <div class="game_page_message" *ngIf="gameEnded">
-      <br/> YOU NEED TO JOIN A NEW GAME <br/></div>
+    <div class="game_page_end_message" *ngIf="gameEnded">
+      <br/> JOIN A NEW GAME <br/></div>
     <app-card [player]="player" [gameEnded]="gameEnded" *ngIf="gameStarted"></app-card>
   </div>
 </div>
