@@ -10,8 +10,7 @@ const httpOptions = {
   })
 };
 
-// const SERVER_URL = "http://192.168.1.232:3000";
-const SERVER_URL = "http://adriapalleja.local:3000";
+const SERVER_URL = "http://localhost:3000";
 
 @Injectable({
   providedIn: 'root'
