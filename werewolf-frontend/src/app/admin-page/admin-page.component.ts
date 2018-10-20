@@ -88,6 +88,7 @@ export class AdminPageComponent implements OnInit {
         this.specialRoles = payload.specialRoles;
         this.villagers = payload.villagers;
         this.gameEnded = true;
+        this.socketService.startRound(this.gameId, 'waiting');
         localStorage.setItem('admin', null);
         break;
       default:
