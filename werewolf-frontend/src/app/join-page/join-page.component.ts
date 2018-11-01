@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class JoinPageComponent implements OnInit {
   @Input() username: string;
   @Input() gameCode: string;
-  player: Player;
 
   constructor(
     private apiClientService: ApiClientService,
@@ -31,11 +30,10 @@ export class JoinPageComponent implements OnInit {
   createPlayer(player): void {
     this.apiClientService.createPlayer(player)
       .subscribe(data => {
-        this.player = data;
         const playerId = { playerId: data.playerId };
         this.socketService.initSocket(this.gameCode, playerId);
+        this.apiClientService.setGame(this.gameCode, null, data.playerId);
         this.router.navigateByUrl('/game');
-      })
+      });
   }
-  
 }
